@@ -5,7 +5,8 @@ EncryptionObj::EncryptionObj(string textArg) {
 }
 
 /*
-    @param none
+    @param
+        none
     @return
         the class variable TEXT as a string
 */
@@ -43,26 +44,74 @@ string EncryptionObj::base10ToBinary(char myChar) {
 }
 
 /*
-    @param none
+    @param 
+        none
     @return
         a string of non-delimited binary values for each character of TEXT
 */
 string EncryptionObj::binaryEncrypt() {
+    return binaryEncrypt(text);
+}
+
+/*
+    @param 
+        any string of characters
+    @return
+        a string of non-delimited binary values for each character of TEXT
+*/
+string EncryptionObj::binaryEncrypt(string str) {
     string returnVal = "";
-    for (int i = 0; i < text.length(); i++) {
-        returnVal+=base10ToBinary(text[i]);
+    for (int i = 0; i < str.length(); i++) {
+        returnVal+=base10ToBinary(str[i]);
     }
     return returnVal;
 }
 
 /*
-    split this
+    @param 
+        none
+    @return
+        a queue of strings of non-delimited binary values for each character of TEXT, 
+        where the first digit was put to the back of the original text, or rotated
+*/
+queue<string> EncryptionObj::binaryEncryptRot() {
+    queue<string> returnVal;
+    string tmp = binaryEncrypt(text);
 
+    for (int i = 0; i < 8; i++) {
+        returnVal.push(tmp);
+        tmp = tmp.substr(1)+tmp.substr(0,1);
+    }
 
-    
-    binaryDecrypt() and binaryDecrypt(string str)
+    return returnVal;
+}
 
-    @param none OR unencrypted, non-delimited, 8-digit binary string of 0s and 1s
+/*
+    @param 
+        none
+    @return
+        a string where each 0s become 1s and 1s become 0s
+*/
+string EncryptionObj::binaryFlip() {
+    string returnVal = "";
+
+    for (int i = 0; i < text.length(); i++) {
+        if (text[i]=='0') {
+            returnVal+="1";
+        }
+        else if (text[i]=='1') {
+            returnVal+="0";
+        }
+        else {
+            return "Invalid characters";
+        }
+    }
+
+    return returnVal;
+}
+/*
+    @param 
+        none
     @return
         a decrypted string of characters taken from the non-delimited string of binary values
 */
@@ -70,6 +119,12 @@ string EncryptionObj::binaryDecrypt() {
     return binaryDecrypt(text);
 }
 
+/*
+    @param 
+        unencrypted, non-delimited, 8-digit binary string of 0s and 1s
+    @return
+        a decrypted string of characters
+*/
 string EncryptionObj::binaryDecrypt(string str) {    
     string returnVal = "";
 
@@ -112,9 +167,11 @@ string EncryptionObj::binaryDecrypt(string str) {
 }
 
 /*
-    @param none
+    @param
+        none
     @return
-        ?
+        a queue of decrypted strings of characters, where the first digit was put 
+        to the back of the original text, or rotated
 */
 queue<string> EncryptionObj::binaryDecryptRot() {
     queue<string> returnVal;

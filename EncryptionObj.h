@@ -10,17 +10,17 @@ class EncryptionObj {
         string text;
         string base10ToBinary(char myChar);
         string binaryDecrypt(string str);
+        string binaryEncrypt(string str);
     public:
         EncryptionObj(string textArg);
         virtual ~EncryptionObj() {}
         string getText();
 
         string binaryEncrypt();
-        //binaryEncryptRot();
-        //binaryEncryptFlip();
+        queue<string> binaryEncryptRot();
+        string binaryFlip();
         string binaryDecrypt();
         queue<string> binaryDecryptRot();
-        //binaryDecryptFlip();
 
         string caesarEncrypt();
         string caesarDecrypt();
