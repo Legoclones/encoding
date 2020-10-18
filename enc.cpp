@@ -5,7 +5,7 @@
 #include "EncryptionObj.h"
 
 /*
-    usage: enc [e/d] [option] + ENTER
+    usage: ./enc [e/d] [option] + ENTER
     >[insert text here] + ENTER
 */
 int main(int argc, char* argv[]) {
@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     string text = "";
 
     //get text
-    while (text=="") {  
+    while (text=="") {
         cout << "text> ";
         getline(cin, text);
     }
