@@ -39,25 +39,23 @@ user@comp_name:~/encoding$ ./enc e b
 > What's your name?
 
 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
-...
 ```
 The long string of 0s and 1s contains 17 8-digit segments because the length of the inputted text (`What's your name?`) is 17 characters, including spaces and digits. 
 
-For example, the first character in the text is `W`. It's corresponding decimal ASCII number is 87 (see [www.asciitable.com](http://www.asciitable.com/)). 87 in binary is 01010111, so 01010111 is added to the beginning of the output string. It performs that same operation for each character until the long, final output string is printed to the console. 
+For example, the first character in the text is `W`. It's corresponding decimal ASCII number is 87 (see [www.asciitable.com](http://www.asciitable.com/)). 87 in binary is 01010111, so `01010111` is added to the beginning of the output string. It performs that same operation for each character until the long, final output string is printed to the console. 
 
 
-Binary encryption example:
+Binary decoding example:
 ```
 user@comp_name:~/encoding$ make
 user@comp_name:~/encoding$ ./enc d b
 > 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
 
 Successful and complete conversion: What's your name?
-...
 ```
-The decoding process does the exact opposite of the encoding process - it takes each 8-digit string of 0s and 1s, turns it back into base 10 or decimal, and then converts that back to the corresponding character. For example, the first 8 digits in the string are 01010111, which 87 in decimal or base 10, and that corresponds to the capital W, so W is added to the output string. 
+The decoding process does the exact opposite of the encoding process - it takes each 8-digit string of 0s and 1s, turns it back into base 10 or decimal, and then converts that back to the corresponding character. For example, the first 8 digits in the string are `01010111`, which 87 in decimal or base 10, and that corresponds to the capital W, so `W` is added to the output string. 
 
-All characters with decimal values under 31 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up less than 32, the console will print out "Non-printable characters converted to ?s" and will replace each occurence of a non-printable character with ?. If there are no non-printable characters, it will print out the message "Successful and complete conversion".
+All characters with decimal values under 31 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up less than 32, the console will print out `Non-printable characters converted to ?s` and will replace each occurence of a non-printable character with `?`. If there are no non-printable characters, it will print out the message `Successful and complete conversion`.
 
 ## Binary Rotation (Option br)
 
