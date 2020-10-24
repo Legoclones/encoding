@@ -2,14 +2,14 @@
 #include <string>
 #include <string.h>
 #include <queue>
-#include "EncryptionObj.h"
+#include "EncodingObj.h"
 
 /*
     usage: ./enc [e/d] [option] + ENTER
     >[insert text here] + ENTER
 */
 int main(int argc, char* argv[]) {
-    bool encrypt;
+    bool encode;
     string option;
     string text = "";
 
@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
         cout << "text> ";
         getline(cin, text);
     }
-    EncryptionObj encObj(text);
+    EncodingObj encObj(text);
 
 
     if (argc<3) {
@@ -26,12 +26,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    //encrypt or decrypt parameter
+    //encode or decode parameter
     if (strcasecmp(argv[1], "e")==0) {
-        encrypt = true;
+        encode = true;
     }
     else if (strcasecmp(argv[1], "d")==0) {
-        encrypt = false;
+        encode = false;
     }
     else {
         cout << "Invalid arguments. Please see README.md for proper usage" << endl;
@@ -41,11 +41,11 @@ int main(int argc, char* argv[]) {
     cout << endl;
 
     //option parameter
-    if (strcasecmp(argv[2], "b")==0&&encrypt) {
-        cout << encObj.binaryEncrypt() << endl;
+    if (strcasecmp(argv[2], "b")==0&&encode) {
+        cout << encObj.binaryEncode() << endl;
     }
-    else if (strcasecmp(argv[2], "br")==0&&encrypt) {
-        queue<string> results = encObj.binaryEncryptRot();
+    else if (strcasecmp(argv[2], "br")==0&&encode) {
+        queue<string> results = encObj.binaryEncodeRot();
         while (!results.empty()) {
             cout << results.front() << endl;
             results.pop();
@@ -54,27 +54,21 @@ int main(int argc, char* argv[]) {
     else if (strcasecmp(argv[2], "bf")==0) {
         cout << encObj.binaryFlip() << endl;
     }
-    else if (strcasecmp(argv[2], "b")==0&&!encrypt) {
-        cout << encObj.binaryDecrypt() << endl;
+    else if (strcasecmp(argv[2], "b")==0&&!encode) {
+        cout << encObj.binaryDecode() << endl;
     }
-    else if (strcasecmp(argv[2], "br")==0&&!encrypt) {
-        queue<string> results = encObj.binaryDecryptRot();
+    else if (strcasecmp(argv[2], "br")==0&&!encode) {
+        queue<string> results = encObj.binaryDecodeRot();
         while (!results.empty()) {
             cout << results.front() << endl;
             results.pop();
         }
     }
-    else if (strcasecmp(argv[2], "c")==0&&encrypt) {
-        cout << encObj.caesarEncrypt() << endl;
+    else if (strcasecmp(argv[2], "c")==0&&encode) {
+        cout << encObj.caesarEncode() << endl;
     }
-    else if (strcasecmp(argv[2], "c")==0&&!encrypt) {
-        cout << encObj.caesarDecrypt() << endl;
-    }
-    else if (strcasecmp(argv[2], "v")==0&&encrypt) {
-        cout << encObj.vigenereEncrypt() << endl;
-    }
-    else if (strcasecmp(argv[2], "v")==0&&!encrypt) {
-        cout << encObj.vigenereDecrypt() << endl;
+    else if (strcasecmp(argv[2], "c")==0&&!encode) {
+        cout << encObj.caesarDecode() << endl;
     }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;

@@ -1,6 +1,6 @@
-#include "EncryptionObj.h"
+#include "EncodingObj.h"
 
-EncryptionObj::EncryptionObj(string textArg) {
+EncodingObj::EncodingObj(string textArg) {
     text = textArg;
 }
 
@@ -10,7 +10,7 @@ EncryptionObj::EncryptionObj(string textArg) {
     @return
         the class variable TEXT as a string
 */
-string EncryptionObj::getText() {
+string EncodingObj::getText() {
     return text;
 }
 
@@ -20,7 +20,7 @@ string EncryptionObj::getText() {
     @return
         an 8-digit binary string based on ASCII values
 */
-string EncryptionObj::base10ToBinary(char myChar) {
+string EncodingObj::base10ToBinary(char myChar) {
     int charCode = int(myChar);
 
     stack<string> binaryStack;
@@ -49,8 +49,8 @@ string EncryptionObj::base10ToBinary(char myChar) {
     @return
         a string of non-delimited binary values for each character of TEXT
 */
-string EncryptionObj::binaryEncrypt() {
-    return binaryEncrypt(text);
+string EncodingObj::binaryEncode() {
+    return binaryEncode(text);
 }
 
 /*
@@ -59,7 +59,7 @@ string EncryptionObj::binaryEncrypt() {
     @return
         a string of non-delimited binary values for each character of TEXT
 */
-string EncryptionObj::binaryEncrypt(string str) {
+string EncodingObj::binaryEncode(string str) {
     string returnVal = "";
     for (int i = 0; i < str.length(); i++) {
         returnVal+=base10ToBinary(str[i]);
@@ -74,9 +74,9 @@ string EncryptionObj::binaryEncrypt(string str) {
         a queue of strings of non-delimited binary values for each character of TEXT, 
         where the first digit was put to the back of the original text, or rotated
 */
-queue<string> EncryptionObj::binaryEncryptRot() {
+queue<string> EncodingObj::binaryEncodeRot() {
     queue<string> returnVal;
-    string tmp = binaryEncrypt(text);
+    string tmp = binaryEncode(text);
 
     for (int i = 0; i < 8; i++) {
         returnVal.push(tmp);
@@ -92,7 +92,7 @@ queue<string> EncryptionObj::binaryEncryptRot() {
     @return
         a string where each 0s become 1s and 1s become 0s
 */
-string EncryptionObj::binaryFlip() {
+string EncodingObj::binaryFlip() {
     string returnVal = "";
 
     for (int i = 0; i < text.length(); i++) {
@@ -113,19 +113,19 @@ string EncryptionObj::binaryFlip() {
     @param 
         none
     @return
-        a decrypted string of characters taken from the non-delimited string of binary values
+        a decoded string of characters taken from the non-delimited string of binary values
 */
-string EncryptionObj::binaryDecrypt() {    
-    return binaryDecrypt(text);
+string EncodingObj::binaryDecode() {    
+    return binaryDecode(text);
 }
 
 /*
     @param 
-        unencrypted, non-delimited, 8-digit binary string of 0s and 1s
+        unencoded, non-delimited, 8-digit binary string of 0s and 1s
     @return
-        a decrypted string of characters
+        a decoded string of characters
 */
-string EncryptionObj::binaryDecrypt(string str) {    
+string EncodingObj::binaryDecode(string str) {    
     string returnVal = "";
 
     if (str.length()<8) {
@@ -170,15 +170,15 @@ string EncryptionObj::binaryDecrypt(string str) {
     @param
         none
     @return
-        a queue of decrypted strings of characters, where the first digit was put 
+        a queue of decoded strings of characters, where the first digit was put 
         to the back of the original text, or rotated
 */
-queue<string> EncryptionObj::binaryDecryptRot() {
+queue<string> EncodingObj::binaryDecodeRot() {
     queue<string> returnVal;
     string tmp = text;
 
     for (int i = 0; i < 8; i++) {
-        returnVal.push(binaryDecrypt(tmp));
+        returnVal.push(binaryDecode(tmp));
         tmp = tmp.substr(1)+tmp.substr(0,1);
     }
 
@@ -190,7 +190,7 @@ queue<string> EncryptionObj::binaryDecryptRot() {
     @return
         ?
 */
-string EncryptionObj::caesarEncrypt() {
+string EncodingObj::caesarEncode() {
     return "Not completed yet";
 }
 
@@ -199,24 +199,6 @@ string EncryptionObj::caesarEncrypt() {
     @return
         ?
 */
-string EncryptionObj::caesarDecrypt() {
-    return "Not completed yet";
-}
-
-/*
-    @param none
-    @return
-        ?
-*/
-string EncryptionObj::vigenereEncrypt() {
-    return "Not completed yet";
-}
-
-/*
-    @param none
-    @return
-        ?
-*/
-string EncryptionObj::vigenereDecrypt() {
+string EncodingObj::caesarDecode() {
     return "Not completed yet";
 }

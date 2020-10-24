@@ -1,4 +1,4 @@
 all:
-	g++ -o enc enc.cpp EncryptionObj.cpp
+	g++ -o enc enc.cpp EncodingObj.cpp
 clean:
 	rm enc
