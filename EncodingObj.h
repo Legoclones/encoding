@@ -24,7 +24,4 @@ class EncodingObj {
 
         string caesarEncode();
         string caesarDecode();
-
-        string vigenereEncode();
-        string vigenereDecode();
 };
