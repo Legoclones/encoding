@@ -156,7 +156,8 @@ string EncodingObj::binaryDecode(string str) {
             val/=2;
         }
         if (charCode>126||charCode<32) {
-            returnVal = "Non-printable characters included: ";
+            returnVal = "Non-printable characters converted to ?s: ";
+            charCode = 63;
         }
         character = charCode;
         tmp+=character;
