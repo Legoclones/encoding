@@ -57,7 +57,7 @@ The decoding process does the exact opposite of the encoding process - it takes 
 
 All characters with decimal values under 31 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up less than 32, the console will print out `Non-printable characters converted to ?s` and will replace each occurence of a non-printable character with `?`. If there are no non-printable characters, it will print out the message `Successful and complete conversion`.
 
-## Binary Rotation (Option br)
+## Binary Rotation (Option `br`)
 
 
 ## Binary Flip (Option bf)
