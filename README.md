@@ -73,7 +73,7 @@ text> What's your name?
 1101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010101
 1011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101011
 ```
-Binary rotations performs the [Binary (Option b)](Binary Encoding) operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary encoding of the text WITHOUT moving any characters. 
+Binary rotations performs the Binary Encoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary encoding of the text WITHOUT moving any characters. 
 
 
 Binary rotation decoding example:
@@ -96,6 +96,15 @@ Binary decoding rotations performs the binary decoding operation on the text, th
 You will note that sometimes the actual message has characters out of order, but the message should be easily recognizable. 
 
 ## Binary Flip (Option bf)
+Binary flip example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc e bf
+text> 1011101101000011
 
+0100010010111100
+```
+Each 0 in the text is converted to a 1, and viceversa. Note - it doesn't matter whether you put `e` or `d`, both will perform the same operation. 
 
 ## Caesar Shift (Option b)
+Coming soon...
