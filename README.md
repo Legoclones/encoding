@@ -73,7 +73,7 @@ text> What's your name?
 1101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010101
 1011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101011
 ```
-Binary rotations performs the Binary Encoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary encoding of the text WITHOUT moving any characters. 
+Binary rotations performs the binary encoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary encoding of the text WITHOUT moving any characters. 
 
 
 Binary rotation decoding example:
