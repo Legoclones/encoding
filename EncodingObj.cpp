@@ -141,7 +141,7 @@ string EncodingObj::binaryDecode(string str) {
         returnVal += "Incomplete number of characters, but a partial answer will be produced: ";
     }
     else {
-        returnVal += "Successful and complete conversion: ";
+        returnVal += "Successful and complete conversion:              ";
     }
 
     string tmp = "";
@@ -156,8 +156,8 @@ string EncodingObj::binaryDecode(string str) {
             val/=2;
         }
         if (charCode>126||charCode<32) {
-            returnVal = "Non-printable characters converted to ?s: ";
-            charCode = 63;
+            returnVal = "Non-printable characters converted to periods:   ";
+            charCode = 46;
         }
         character = charCode;
         tmp+=character;

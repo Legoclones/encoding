@@ -23,7 +23,7 @@ Example:
 ```
 user@comp_name:~/encoding$ make
 user@comp_name:~/encoding$ ./enc d b
-> this_is_my_inserted_text
+text> this_is_my_inserted_text
 ...
 ```
 
@@ -36,7 +36,7 @@ Binary encoding example:
 ```
 user@comp_name:~/encoding$ make
 user@comp_name:~/encoding$ ./enc e b
-> What's your name?
+text> What's your name?
 
 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
 ```
@@ -49,16 +49,51 @@ Binary decoding example:
 ```
 user@comp_name:~/encoding$ make
 user@comp_name:~/encoding$ ./enc d b
-> 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
+text> 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
 
-Successful and complete conversion: What's your name?
+Successful and complete conversion:              What's your name?
 ```
 The decoding process does the exact opposite of the encoding process - it takes each 8-digit string of 0s and 1s, turns it back into base 10 or decimal, and then converts that back to the corresponding character. For example, the first 8 digits in the string are `01010111`, which 87 in decimal or base 10, and that corresponds to the capital W, so `W` is added to the output string. 
 
-All characters with decimal values under 31 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up less than 32, the console will print out `Non-printable characters converted to ?s` and will replace each occurence of a non-printable character with `?`. If there are no non-printable characters, it will print out the message `Successful and complete conversion`.
+All characters with decimal values under 31 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up less than 32, the console will print out `Non-printable characters converted to periods` and will replace each occurence of a non-printable character with `.`. If there are no non-printable characters, it will print out the message `Successful and complete conversion`.
 
-## Binary Rotation (Option `br`)
+## Binary Rotation (Option br)
+Binary rotation encoding example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc e br
+text> What's your name?
 
+0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
+1010111011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110
+0101110110100001100001011101000010011101110011001000000111100101101111011101010111001000100000011011100110000101101101011001010011111101
+1011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010
+0111011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101
+1110110100001100001011101000010011101110011001000000111100101101111011101010111001000100000011011100110000101101101011001010011111101010
+1101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010101
+1011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101011
+```
+Binary rotations performs the [Binary (Option b)](Binary Encoding) operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary encoding of the text WITHOUT moving any characters. 
+
+
+Binary rotation decoding example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc d br
+text> 1011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010
+
+Non-printable characters converted to periods:   .C..;...{...s.k).
+Non-printable characters converted to periods:   v..Bw2...W"....S.
+Non-printable characters converted to periods:   .....d.-..D..-...
+Non-printable characters converted to periods:   ..]....[.\...[YO.
+Non-printable characters converted to periods:   .0....<....70....
+Successful and complete conversion:              hat's your name?W
+Non-printable characters converted to periods:   ...N.@....@....~.
+Non-printable characters converted to periods:   ................]
+```
+Binary decoding rotations performs the binary decoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary decoding of the text WITHOUT moving any 0s or 1s. 
+
+You will note that sometimes the actual message has characters out of order, but the message should be easily recognizable. 
 
 ## Binary Flip (Option bf)
 
