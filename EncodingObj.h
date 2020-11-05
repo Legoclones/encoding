@@ -13,7 +13,7 @@ class EncodingObj {
         string binaryEncode(string str);
     public:
         EncodingObj(string textArg);
-        virtual ~EncodingObj() {}
+        ~EncodingObj() {}
         string getText();
 
         string binaryEncode();
@@ -23,5 +23,11 @@ class EncodingObj {
         queue<string> binaryDecodeRot();
 
         string caesarEncode();
-        string caesarDecode();
+        string caesarDecode();//rot26
+
+        //hex
+
+        //base64
+
+        //text flip
 };

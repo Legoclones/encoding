@@ -5,6 +5,10 @@
 #include "EncodingObj.h"
 
 /*
+    - Add functions
+    - Check for memory leaks with Valgrind
+*/
+/*
     usage: ./enc [e/d] [option] + ENTER
     >[insert text here] + ENTER
 */
