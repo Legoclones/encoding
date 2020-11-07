@@ -109,6 +109,7 @@ string EncodingObj::binaryFlip() {
 
     return returnVal;
 }
+
 /*
     @param 
         none
@@ -179,12 +180,42 @@ queue<string> EncodingObj::binaryDecodeRot() {
 }
 
 /*
-    @param none
+    @param
+        a string to be shifted and a integer for how many characters over it should be shifted
     @return
-        ?
+        a Caesar-shifted string
 */
-string EncodingObj::caesarEncode() {
-    return "Not completed yet";
+string EncodingObj::caesarShift(string str, int n) {
+    string returnVal = "";
+
+    for (int i = 0; i < str.length(); i++) {
+        int charCode = int(str[i]);
+        if (!((charCode>64 && charCode<91) || (charCode>96 && charCode<123))) {
+            int newCharCode = charCode+n;
+
+            if (charCode>64 && charCode<91 && newCharCode>90) {
+                newCharCode-=26;
+            }
+            else if (charCode>64 && charCode<91 && newCharCode<65) {
+                newCharCode+=26;
+            }
+            if (charCode>96 && charCode<123 && newCharCode>122) {
+                newCharCode-=26;
+            }
+            else if (charCode>96 && charCode<123 && newCharCode<97) {
+                newCharCode+=26;
+            }
+
+            char character = newCharCode;
+            returnVal+=character;
+        }
+        else {
+            char character = charCode;
+            returnVal+=character;
+        }
+    }
+    
+    return returnVal;
 }
 
 /*
@@ -192,6 +223,17 @@ string EncodingObj::caesarEncode() {
     @return
         ?
 */
-string EncodingObj::caesarDecode() {
-    return "Not completed yet";
+queue<string> EncodingObj::caesarEncode() {
+    queue<string> returnVal;
+    return returnVal;
+}
+
+/*
+    @param none
+    @return
+        ?
+*/
+queue<string> EncodingObj::caesarDecode() {
+    queue<string> returnVal;
+    return returnVal;
 }

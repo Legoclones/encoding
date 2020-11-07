@@ -5,6 +5,12 @@
 #include "EncodingObj.h"
 
 /*
+    TODOS:
+    - Test CaesarShift function
+    - Implement other caesar functions
+    - Change caesar functions in main()
+    - Add caesar to README.md
+
     - Add functions
     - Check for memory leaks with Valgrind
 */
@@ -85,10 +91,10 @@ int main(int argc, char* argv[]) {
         }
     }
     else if (strcasecmp(argv[2], "c")==0&&encode) {
-        cout << encObj.caesarEncode() << endl;
+        cout << "Not completed yet." << endl;
     }
     else if (strcasecmp(argv[2], "c")==0&&!encode) {
-        cout << encObj.caesarDecode() << endl;
+        cout << "Not completed yet." << endl;
     }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;

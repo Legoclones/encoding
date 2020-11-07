@@ -11,6 +11,7 @@ class EncodingObj {
         string base10ToBinary(char myChar);
         string binaryDecode(string str);
         string binaryEncode(string str);
+        string caesarShift(string str, int n);
     public:
         EncodingObj(string textArg);
         ~EncodingObj() {}
@@ -22,8 +23,8 @@ class EncodingObj {
         string binaryDecode();
         queue<string> binaryDecodeRot();
 
-        string caesarEncode();
-        string caesarDecode();//rot26
+        queue<string> caesarEncode();
+        queue<string> caesarDecode();//rot26
 
         //hex
 
