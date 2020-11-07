@@ -4,7 +4,7 @@ This program is written in C++ to encode and decode text. It's written to be use
 * Option `b` (enc/dec) - each character in the inputted text is encoded to or decoded from their 8-digit binary ASCII code
 * Option `br` (enc/dec) - the above option is run, but the code moves the first character to the end of the text 7 times
 * Option `bf` - each 0 in the inputted text are turned into 1s, and viceversa
-* Option `c #` (enc/dec) - each character in the inputted is rotated a certain number of characters over, as specific by the #
+* Option `c` (enc/dec) - each character in the inputted is rotated 0-25 characters over
 
 Specifying encode/decode and option must be done as commandline arguments. The text is entered into a second line after pressing ENTER. See below for specifics. 
 
@@ -176,4 +176,4 @@ text> Hi! What's your name?
 24 characters shifted: Jk! Yjcv'u aqwt pcog?
 25 characters shifted: Ij! Xibu't zpvs obnf?
 ```
-Caesar shift encoding shifts each character over n characters to the left.  
+Caesar shift decoding shifts each character over n characters to the left.  
