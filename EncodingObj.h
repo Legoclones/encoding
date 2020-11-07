@@ -24,7 +24,7 @@ class EncodingObj {
         queue<string> binaryDecodeRot();
 
         queue<string> caesarEncode();
-        queue<string> caesarDecode();//rot26
+        queue<string> caesarDecode();
 
         //hex
 

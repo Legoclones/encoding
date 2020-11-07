@@ -6,10 +6,6 @@
 
 /*
     TODOS:
-    - Test CaesarShift function
-    - Implement other caesar functions
-    - Change caesar functions in main()
-    - Add caesar to README.md
 
     - Add functions
     - Check for memory leaks with Valgrind
@@ -91,10 +87,34 @@ int main(int argc, char* argv[]) {
         }
     }
     else if (strcasecmp(argv[2], "c")==0&&encode) {
-        cout << "Not completed yet." << endl;
+        queue<string> results = encObj.caesarEncode();
+        for (int i = 0; !results.empty(); i++) {
+            cout << i << " character";
+            if (i!=1) {
+                cout << "s";
+            }
+            cout << " shifted: ";
+            if (i==1) {
+                cout << " ";
+            }
+            cout << results.front() << endl;
+            results.pop();
+        }
     }
     else if (strcasecmp(argv[2], "c")==0&&!encode) {
-        cout << "Not completed yet." << endl;
+        queue<string> results = encObj.caesarDecode();
+        for (int i = 0; !results.empty(); i++) {
+            cout << i << " character";
+            if (i!=1) {
+                cout << "s";
+            }
+            cout << " shifted: ";
+            if (i==1) {
+                cout << " ";
+            }
+            cout << results.front() << endl;
+            results.pop();
+        }
     }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;

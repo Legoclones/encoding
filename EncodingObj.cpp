@@ -190,7 +190,7 @@ string EncodingObj::caesarShift(string str, int n) {
 
     for (int i = 0; i < str.length(); i++) {
         int charCode = int(str[i]);
-        if (!((charCode>64 && charCode<91) || (charCode>96 && charCode<123))) {
+        if ((charCode>64 && charCode<91) || (charCode>96 && charCode<123)) {
             int newCharCode = charCode+n;
 
             if (charCode>64 && charCode<91 && newCharCode>90) {
@@ -221,19 +221,29 @@ string EncodingObj::caesarShift(string str, int n) {
 /*
     @param none
     @return
-        ?
+        a queue of strings shifted a certain number of characters to the right
 */
 queue<string> EncodingObj::caesarEncode() {
     queue<string> returnVal;
+
+    for (int i = 0; i < 26; i++) {
+        returnVal.push(caesarShift(text, i));
+    }
+
     return returnVal;
 }
 
 /*
     @param none
     @return
-        ?
+        a queue of strings shifted a certain number of characters to the right
 */
 queue<string> EncodingObj::caesarDecode() {
     queue<string> returnVal;
+    
+    for (int i = 0; i < 26; i++) {
+        returnVal.push(caesarShift(text, -i));
+    }
+
     return returnVal;
 }

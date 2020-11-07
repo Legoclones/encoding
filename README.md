@@ -106,5 +106,74 @@ text> 1011101101000011
 ```
 Each 0 in the text is converted to a 1, and viceversa. Note - it doesn't matter whether you put `e` or `d`, both will perform the same operation. 
 
-## Caesar Shift (Option b)
-Coming soon...
+## Caesar Shift (Option c)
+Caesar shift encoding example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc e c
+text> Hi! What's your name?
+
+0 characters shifted: Hi! What's your name?
+1 character shifted:  Ij! Xibu't zpvs obnf?
+2 characters shifted: Jk! Yjcv'u aqwt pcog?
+3 characters shifted: Kl! Zkdw'v brxu qdph?
+4 characters shifted: Lm! Alex'w csyv reqi?
+5 characters shifted: Mn! Bmfy'x dtzw sfrj?
+6 characters shifted: No! Cngz'y euax tgsk?
+7 characters shifted: Op! Doha'z fvby uhtl?
+8 characters shifted: Pq! Epib'a gwcz vium?
+9 characters shifted: Qr! Fqjc'b hxda wjvn?
+10 characters shifted: Rs! Grkd'c iyeb xkwo?
+11 characters shifted: St! Hsle'd jzfc ylxp?
+12 characters shifted: Tu! Itmf'e kagd zmyq?
+13 characters shifted: Uv! Jung'f lbhe anzr?
+14 characters shifted: Vw! Kvoh'g mcif boas?
+15 characters shifted: Wx! Lwpi'h ndjg cpbt?
+16 characters shifted: Xy! Mxqj'i oekh dqcu?
+17 characters shifted: Yz! Nyrk'j pfli erdv?
+18 characters shifted: Za! Ozsl'k qgmj fsew?
+19 characters shifted: Ab! Patm'l rhnk gtfx?
+20 characters shifted: Bc! Qbun'm siol hugy?
+21 characters shifted: Cd! Rcvo'n tjpm ivhz?
+22 characters shifted: De! Sdwp'o ukqn jwia?
+23 characters shifted: Ef! Texq'p vlro kxjb?
+24 characters shifted: Fg! Ufyr'q wmsp lykc?
+25 characters shifted: Gh! Vgzs'r xntq mzld?
+```
+Caesar shift encoding shifts each character over n characters to the right.  
+
+
+Caesar shift decoding example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc e c
+text> Hi! What's your name?
+
+0 characters shifted: Hi! What's your name?
+1 character shifted:  Gh! Vgzs'r xntq mzld?
+2 characters shifted: Fg! Ufyr'q wmsp lykc?
+3 characters shifted: Ef! Texq'p vlro kxjb?
+4 characters shifted: De! Sdwp'o ukqn jwia?
+5 characters shifted: Cd! Rcvo'n tjpm ivhz?
+6 characters shifted: Bc! Qbun'm siol hugy?
+7 characters shifted: Ab! Patm'l rhnk gtfx?
+8 characters shifted: Za! Ozsl'k qgmj fsew?
+9 characters shifted: Yz! Nyrk'j pfli erdv?
+10 characters shifted: Xy! Mxqj'i oekh dqcu?
+11 characters shifted: Wx! Lwpi'h ndjg cpbt?
+12 characters shifted: Vw! Kvoh'g mcif boas?
+13 characters shifted: Uv! Jung'f lbhe anzr?
+14 characters shifted: Tu! Itmf'e kagd zmyq?
+15 characters shifted: St! Hsle'd jzfc ylxp?
+16 characters shifted: Rs! Grkd'c iyeb xkwo?
+17 characters shifted: Qr! Fqjc'b hxda wjvn?
+18 characters shifted: Pq! Epib'a gwcz vium?
+19 characters shifted: Op! Doha'z fvby uhtl?
+20 characters shifted: No! Cngz'y euax tgsk?
+21 characters shifted: Mn! Bmfy'x dtzw sfrj?
+22 characters shifted: Lm! Alex'w csyv reqi?
+23 characters shifted: Kl! Zkdw'v brxu qdph?
+24 characters shifted: Jk! Yjcv'u aqwt pcog?
+25 characters shifted: Ij! Xibu't zpvs obnf?
+```
+Caesar shift encoding shifts each character over n characters to the left.  
