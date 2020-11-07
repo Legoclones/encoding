@@ -50,7 +50,15 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[2], "br")==0&&encode) {
         queue<string> results = encObj.binaryEncodeRot();
-        while (!results.empty()) {
+        for (int i = 0; !results.empty(); i++) {
+            cout << i << " digit";
+            if (i!=1) {
+                cout << "s";
+            }
+            cout << " rotated: ";
+            if (i==1) {
+                cout << " ";
+            }
             cout << results.front() << endl;
             results.pop();
         }
@@ -63,7 +71,15 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[2], "br")==0&&!encode) {
         queue<string> results = encObj.binaryDecodeRot();
-        while (!results.empty()) {
+        for (int i = 0; !results.empty(); i++) {
+            cout << i << " digit";
+            if (i!=1) {
+                cout << "s";
+            }
+            cout << " rotated: ";
+            if (i==1) {
+                cout << " ";
+            }
             cout << results.front() << endl;
             results.pop();
         }

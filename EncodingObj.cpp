@@ -137,13 +137,6 @@ string EncodingObj::binaryDecode(string str) {
         }
     }
 
-    if (str.length()%8!=0) {
-        returnVal += "Incomplete number of characters, but a partial answer will be produced: ";
-    }
-    else {
-        returnVal += "Successful and complete conversion:              ";
-    }
-
     string tmp = "";
     for (int i = 0; i < str.length()/8; i++) {
         string binary = str.substr(8*i, 8);
@@ -156,7 +149,6 @@ string EncodingObj::binaryDecode(string str) {
             val/=2;
         }
         if (charCode>126||charCode<32) {
-            returnVal = "Non-printable characters converted to periods:   ";
             charCode = 46;
         }
         character = charCode;

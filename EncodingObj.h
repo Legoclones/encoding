@@ -30,4 +30,6 @@ class EncodingObj {
         //base64
 
         //text flip
+
+        //decodeall - this tries out everything, maybe even include a dictionary at some point
 };
