@@ -146,7 +146,7 @@ Caesar shift encoding shifts each character over n characters to the right.
 Caesar shift decoding example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc e c
+user@comp_name:~/encoding$ ./enc d c
 text> Hi! What's your name?
 
 0 characters shifted: Hi! What's your name?
