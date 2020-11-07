@@ -116,6 +116,9 @@ int main(int argc, char* argv[]) {
             results.pop();
         }
     }
+    else if (strcasecmp(argv[2], "tf")==0) {
+        cout << encObj.textFlip() << endl;
+    }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;
         return 1;

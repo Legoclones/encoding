@@ -5,6 +5,7 @@ This program is written in C++ to encode and decode text. It's written to be use
 * Option `br` (enc/dec) - the above option is run, but the code moves the first character to the end of the text 7 times
 * Option `bf` - each 0 in the inputted text are turned into 1s, and viceversa
 * Option `c` (enc/dec) - each character in the inputted is rotated 0-25 characters over
+* Option `tf` - the string is turned backwards
 
 Specifying encode/decode and option must be done as commandline arguments. The text is entered into a second line after pressing ENTER. See below for specifics. 
 
@@ -176,4 +177,15 @@ text> Hi! What's your name?
 24 characters shifted: Jk! Yjcv'u aqwt pcog?
 25 characters shifted: Ij! Xibu't zpvs obnf?
 ```
-Caesar shift decoding shifts each character over n characters to the left.  
+Caesar shift decoding shifts each character over n characters to the left.
+
+## Text Flip (Option tf)
+Text flip example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc e tf
+text> hey!
+
+!yeh
+```
+The string is printed out backwards. Note - it doesn't matter whether you put `e` or `d`, both will perform the same operation. 

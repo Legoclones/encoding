@@ -247,3 +247,33 @@ queue<string> EncodingObj::caesarDecode() {
 
     return returnVal;
 }
+
+/*
+    @param none
+    @return
+        a flipped string
+*/
+string EncodingObj::textFlip() {
+    return textFlip(text);
+}
+
+/*
+    @param
+        a string to be flipped
+    @return
+        a flipped string
+*/
+string EncodingObj::textFlip(string str) {
+    string returnVal;
+    stack<char> myStack;
+    
+    for (int i = 0; i < str.length(); i++) {
+        myStack.push(str[i]);
+    }
+    while (!myStack.empty()) {
+        returnVal+=myStack.top();
+        myStack.pop();
+    }
+
+    return returnVal;
+}
