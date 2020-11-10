@@ -6,9 +6,14 @@
 
 /*
     TODOS:
+    - Implement HexDecode
+    - Make the programs more robust
+    - Update comments
+    - Update README
 
     - Add functions
     - Check for memory leaks with Valgrind
+    - Redesign as b2a etc. and make it more interchangeable
 */
 /*
     usage: ./enc [e/d] [option] + ENTER
@@ -118,6 +123,12 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[2], "tf")==0) {
         cout << encObj.textFlip() << endl;
+    }
+    else if (strcasecmp(argv[2], "h")==0&&encode) {
+        cout << encObj.hexEncode() << endl;
+    }
+    else if (strcasecmp(argv[2], "h")==0&&!encode) {
+        cout << encObj.hexDecode() << endl;
     }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;

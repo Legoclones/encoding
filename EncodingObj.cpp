@@ -277,3 +277,116 @@ string EncodingObj::textFlip(string str) {
 
     return returnVal;
 }
+
+/*
+    @param
+        a string to be flipped
+    @return
+        a flipped string
+*/
+string EncodingObj::hexEncode(string str) {
+    string returnVal;
+
+    return returnVal;
+}
+
+/*
+    @param
+        a string to be flipped
+    @return
+        a flipped string
+*/
+string EncodingObj::hexEncode() {
+    string returnVal;
+
+    return returnVal;
+}
+
+/*
+    @param
+        a string to be flipped
+    @return
+        a flipped string
+*/
+int EncodingObj::charToHex(char character) {
+    string digits = "0123456789";
+    if (digits.find(character)!=string::npos) {
+        return character - '0';
+    }
+    else if (character=='a'||character=='A') {
+        return 10;
+    }
+    else if (character=='b'||character=='B') {
+        return 11;
+    }
+    else if (character=='c'||character=='C') {
+        return 12;
+    }
+    else if (character=='d'||character=='D') {
+        return 13;
+    }
+    else if (character=='e'||character=='E') {
+        return 14;
+    }
+    else if (character=='f'||character=='F') {
+        return 15;
+    }
+    else {
+        cout << character << endl;
+        return -1;
+    }
+}
+
+/*
+    @param
+        a string to be flipped
+    @return
+        a flipped string
+*/
+string EncodingObj::hexDecode(string str) {
+    string returnVal;
+    queue<stack<char>> myQueue;
+    stringstream ss(str);
+
+    string token;
+    while (ss >> token) {
+        string hex = token.c_str();
+
+        stack<char> tmp;
+        for (int i = 0; i < hex.length(); i++) {
+            tmp.push(hex[i]);
+        }
+        myQueue.push(tmp);
+    }
+    
+    for (int i = 0; !myQueue.empty(); ++i) {
+        int charCode = 0;
+        for (int j = 0; !myQueue.front().empty(); j++) {
+            int val = charToHex(myQueue.front().top());
+            if (val==-1) {
+                return "Invalid string";
+            }
+            charCode += pow(16, j)*val;
+            myQueue.front().pop();
+        }
+        if (charCode>126||charCode<32) {
+            charCode = 46;
+        }
+
+        char character = charCode;
+        returnVal += character;
+        myQueue.pop();
+    }
+
+    return returnVal;
+}
+
+/*
+    @param
+        a string to be flipped
+    @return
+        a flipped string
+*/
+string EncodingObj::hexDecode() {
+    return hexDecode(text);
+}

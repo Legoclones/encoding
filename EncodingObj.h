@@ -2,6 +2,9 @@
 #include <string>
 #include <stack>
 #include <queue>
+#include <math.h>
+#include <sstream>
+#include <string.h>
 
 using namespace std;
 
@@ -13,6 +16,9 @@ class EncodingObj {
         string binaryEncode(string str);
         string caesarShift(string str, int n);
         string textFlip(string str);
+        string hexEncode(string str);
+        string hexDecode(string str);
+        int charToHex(char character);
     public:
         EncodingObj(string textArg);
         ~EncodingObj() {}
@@ -29,11 +35,12 @@ class EncodingObj {
 
         string textFlip();
 
+        string hexEncode();
+        string hexDecode();
+
         //hex
 
         //base64
-
-        //text flip
 
         //decodeall - this tries out everything, maybe even include a dictionary at some point
 };
