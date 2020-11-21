@@ -6,10 +6,6 @@
 
 /*
     TODOS:
-    - Implement HexDecode
-    - Make the programs more robust
-    - Update comments
-    - Update README
 
     - Add functions
     - Check for memory leaks with Valgrind

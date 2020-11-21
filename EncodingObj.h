@@ -18,7 +18,8 @@ class EncodingObj {
         string textFlip(string str);
         string hexEncode(string str);
         string hexDecode(string str);
-        int charToHex(char character);
+        int base16toBase10(char character);
+        string base10toBase16(int digit);
     public:
         EncodingObj(string textArg);
         ~EncodingObj() {}
@@ -37,8 +38,6 @@ class EncodingObj {
 
         string hexEncode();
         string hexDecode();
-
-        //hex
 
         //base64
 

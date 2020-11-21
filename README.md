@@ -189,3 +189,25 @@ text> hey!
 !yeh
 ```
 The string is printed out backwards. Note - it doesn't matter whether you put `e` or `d`, both will perform the same operation. 
+
+## Hexadecimal (Option h)
+Hexadecimal encoding example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc e h
+text> Hi, what's your name?
+
+48 69 2c 20 77 68 61 74 27 73 20 79 6f 75 72 20 6e 61 6d 65 3f
+```
+Hex encoding takes each character and returns a space-delimited string of the hexadecimal equivalent of the ASCII code for that character.
+
+
+Hexadecimal decoding example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc d h
+text> 48 69 2c 20 77 68 61 74 27 73 20 79 6f 75 72 20 6e 61 6d 65 3f
+
+Hi, what's your name?
+```
+Hex decoding takes each hexadecimal value and returns its corresponding ASCII character.

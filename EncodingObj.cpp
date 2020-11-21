@@ -278,37 +278,85 @@ string EncodingObj::textFlip(string str) {
     return returnVal;
 }
 
+
 /*
     @param
-        a string to be flipped
+        an decimal integer between 0 and 15
     @return
-        a flipped string
+        the corresponding hex value as a string
+*/
+string EncodingObj::base10toBase16(int digit) {
+    string returnVal;
+    if (digit>=0&&digit<10) {
+        returnVal = to_string(digit);
+        return returnVal;
+    }
+    else if (digit==10) {
+        return "a";
+    }
+    else if (digit==11) {
+        return "b";
+    }
+    else if (digit==12) {
+        return "c";
+    }
+    else if (digit==13) {
+        return "d";
+    }
+    else if (digit==14) {
+        return "e";
+    }
+    else if (digit==15) {
+        return "f";
+    }
+    else {
+        return ".";
+    }
+}
+
+/*
+    @param
+        an ASCII string
+    @return
+        the parameter string returned in hex values
 */
 string EncodingObj::hexEncode(string str) {
     string returnVal;
 
+    for (int i = 0; i < str.length(); i++) {
+        string hex = "";
+        int charCode = str[i];
+
+        while (charCode>15) {
+            int remainderDecimal = charCode%16;
+            hex.insert(0,base10toBase16(remainderDecimal));
+            charCode /= 16;
+        }
+        int remainderDecimal = charCode%16;
+        hex.insert(0,base10toBase16(remainderDecimal));
+        returnVal += hex + " ";
+    }
+
     return returnVal;
 }
 
 /*
     @param
-        a string to be flipped
+        none
     @return
-        a flipped string
+        data member 'text' returned in hex values
 */
 string EncodingObj::hexEncode() {
-    string returnVal;
-
-    return returnVal;
+    return hexEncode(text);
 }
 
 /*
     @param
-        a string to be flipped
+        a hexadecimal character
     @return
-        a flipped string
+        its corresponding decimal integer
 */
-int EncodingObj::charToHex(char character) {
+int EncodingObj::base16toBase10(char character) {
     string digits = "0123456789";
     if (digits.find(character)!=string::npos) {
         return character - '0';
@@ -332,16 +380,15 @@ int EncodingObj::charToHex(char character) {
         return 15;
     }
     else {
-        cout << character << endl;
         return -1;
     }
 }
 
 /*
     @param
-        a string to be flipped
+        a space-delimited string of hex values
     @return
-        a flipped string
+        the string decoded into ASCII form
 */
 string EncodingObj::hexDecode(string str) {
     string returnVal;
@@ -362,7 +409,7 @@ string EncodingObj::hexDecode(string str) {
     for (int i = 0; !myQueue.empty(); ++i) {
         int charCode = 0;
         for (int j = 0; !myQueue.front().empty(); j++) {
-            int val = charToHex(myQueue.front().top());
+            int val = base16toBase10(myQueue.front().top());
             if (val==-1) {
                 return "Invalid string";
             }
@@ -383,9 +430,9 @@ string EncodingObj::hexDecode(string str) {
 
 /*
     @param
-        a string to be flipped
+        none
     @return
-        a flipped string
+        the string decoded into ASCII form
 */
 string EncodingObj::hexDecode() {
     return hexDecode(text);
