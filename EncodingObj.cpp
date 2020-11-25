@@ -1,5 +1,9 @@
 #include "EncodingObj.h"
 
+/*
+    SECTION 1 - INITIALIZERS/DESTRUCTORS
+*/
+
 EncodingObj::EncodingObj(string textArg) {
     text = textArg;
 }
@@ -14,111 +18,10 @@ string EncodingObj::getText() {
     return text;
 }
 
-/*
-    @param 1 
-        any character
-    @return
-        an 8-digit binary string based on ASCII values
-*/
-string EncodingObj::base10ToBinary(char myChar) {
-    int charCode = int(myChar);
-
-    stack<string> binaryStack;
-    while (charCode!=0) {
-        binaryStack.push(to_string(charCode%2));
-        charCode/=2;
-    }
-
-    string returnVal = "";
-    int loop = binaryStack.size();
-
-    for (int i = 0; i < 8-loop; i++) {
-        returnVal+="0";
-    }
-
-    for (int i = 0; i < loop; i++) {
-        returnVal+=binaryStack.top();
-        binaryStack.pop();
-    }
-    return returnVal;
-}
 
 /*
-    @param 
-        none
-    @return
-        a string of non-delimited binary values for each character of TEXT
+    SECTION 2 - BINARY
 */
-string EncodingObj::binaryEncode() {
-    return binaryEncode(text);
-}
-
-/*
-    @param 
-        any string of characters
-    @return
-        a string of non-delimited binary values for each character of TEXT
-*/
-string EncodingObj::binaryEncode(string str) {
-    string returnVal = "";
-    for (int i = 0; i < str.length(); i++) {
-        returnVal+=base10ToBinary(str[i]);
-    }
-    return returnVal;
-}
-
-/*
-    @param 
-        none
-    @return
-        a queue of strings of non-delimited binary values for each character of TEXT, 
-        where the first digit was put to the back of the original text, or rotated
-*/
-queue<string> EncodingObj::binaryEncodeRot() {
-    queue<string> returnVal;
-    string tmp = binaryEncode(text);
-
-    for (int i = 0; i < 8; i++) {
-        returnVal.push(tmp);
-        tmp = tmp.substr(1)+tmp.substr(0,1);
-    }
-
-    return returnVal;
-}
-
-/*
-    @param 
-        none
-    @return
-        a string where each 0s become 1s and 1s become 0s
-*/
-string EncodingObj::binaryFlip() {
-    string returnVal = "";
-
-    for (int i = 0; i < text.length(); i++) {
-        if (text[i]=='0') {
-            returnVal+="1";
-        }
-        else if (text[i]=='1') {
-            returnVal+="0";
-        }
-        else {
-            return "Invalid characters";
-        }
-    }
-
-    return returnVal;
-}
-
-/*
-    @param 
-        none
-    @return
-        a decoded string of characters taken from the non-delimited string of binary values
-*/
-string EncodingObj::binaryDecode() {    
-    return binaryDecode(text);
-}
 
 /*
     @param 
@@ -126,7 +29,7 @@ string EncodingObj::binaryDecode() {
     @return
         a decoded string of characters
 */
-string EncodingObj::binaryDecode(string str) {    
+string EncodingObj::binaryToAscii(string str) {    
     string returnVal = "";
 
     if (str.length()<8) {
@@ -161,23 +64,164 @@ string EncodingObj::binaryDecode(string str) {
 }
 
 /*
+    @param 
+        any string of characters
+    @return
+        a string of non-delimited binary values for each character of TEXT
+*/
+string EncodingObj::asciiToBinary(string str) {
+    string returnVal = "";
+    for (int i = 0; i < str.length(); i++) {
+        int charCode = int(str[i]);
+        returnVal+=decimalToBinary(charCode, true);
+    }
+    return returnVal;
+}
+
+/*
+    @param 1 
+        a decimal number
+    @param 2
+        a boolean that determines whether the desired return value should have 8 digits or not (padded 0's)
+    @return
+        a binary number
+*/
+string EncodingObj::decimalToBinary(int num, bool eight) {
+    stack<string> binaryStack;
+    while (num!=0) {
+        binaryStack.push(to_string(num%2));
+        num/=2;
+    }
+
+    string returnVal = "";
+    int loop = binaryStack.size();
+
+    if (eight) {
+        for (int i = 0; i < 8-loop; i++) {
+            returnVal+="0";
+        }
+    }
+
+    for (int i = 0; i < loop; i++) {
+        returnVal+=binaryStack.top();
+        binaryStack.pop();
+    }
+    return returnVal;
+}
+
+/*
+    @param 
+        none
+    @return
+        a string of non-delimited binary values for each character of TEXT
+*/
+string EncodingObj::asciiToBinary() {
+    return asciiToBinary(text);
+}
+
+/*
+    @param 
+        none
+    @return
+        a queue of strings of non-delimited binary values for each character of TEXT, 
+        where the first digit was put to the back of the original text, or rotated
+*/
+queue<string> EncodingObj::asciiToBinaryAll() {
+    queue<string> returnVal;
+    string tmp = asciiToBinary(text);
+
+    for (int i = 0; i < 8; i++) {
+        returnVal.push(tmp);
+        tmp = tmp.substr(1)+tmp.substr(0,1);
+    }
+
+    return returnVal;
+}
+
+/*
+    @param none
+    @return
+        the binary equivalent of a decimal number
+*/
+string EncodingObj::decimalToBinary() {
+    string returnVal;
+    try {
+        int num = stoi(text);
+        returnVal = decimalToBinary(num, false);
+    }
+    catch (...) {
+        returnVal = "Invalid input";
+    }
+    return returnVal;
+}
+
+/*
+    @param 
+        none
+    @return
+        a string where each 0s become 1s and 1s become 0s
+*/
+string EncodingObj::binaryFlip() {
+    string returnVal = "";
+
+    for (int i = 0; i < text.length(); i++) {
+        if (text[i]=='0') {
+            returnVal+="1";
+        }
+        else if (text[i]=='1') {
+            returnVal+="0";
+        }
+        else {
+            return "Invalid characters";
+        }
+    }
+
+    return returnVal;
+}
+
+/*
+    @param 
+        none
+    @return
+        a decoded string of characters taken from the non-delimited string of binary values
+*/
+string EncodingObj::binaryToAscii() {    
+    return binaryToAscii(text);
+}
+
+/*
     @param
         none
     @return
         a queue of decoded strings of characters, where the first digit was put 
         to the back of the original text, or rotated
 */
-queue<string> EncodingObj::binaryDecodeRot() {
+queue<string> EncodingObj::binaryToAsciiAll() {
     queue<string> returnVal;
     string tmp = text;
 
     for (int i = 0; i < 8; i++) {
-        returnVal.push(binaryDecode(tmp));
+        returnVal.push(binaryToAscii(tmp));
         tmp = tmp.substr(1)+tmp.substr(0,1);
     }
 
     return returnVal;
 }
+
+/*
+    @param
+        none
+    @return
+        the decimal equivalent of a binary number
+*/
+string EncodingObj::binaryToDecimal() {
+    return "Coming soon";
+}
+
+
+/*
+    SECTION 3 - CAESAR SHIFT
+*/
 
 /*
     @param
@@ -248,14 +292,10 @@ queue<string> EncodingObj::caesarDecode() {
     return returnVal;
 }
 
+
 /*
-    @param none
-    @return
-        a flipped string
+    SECTION 4 - TEXT FLIP
 */
-string EncodingObj::textFlip() {
-    return textFlip(text);
-}
 
 /*
     @param
@@ -278,6 +318,89 @@ string EncodingObj::textFlip(string str) {
     return returnVal;
 }
 
+/*
+    @param none
+    @return
+        a flipped string
+*/
+string EncodingObj::textFlip() {
+    return textFlip(text);
+}
+
+
+/*
+    SECTION 5 - HEXADECIMAL
+*/
+
+/*
+    @param
+        a space-delimited string of hex values
+    @return
+        the string decoded into ASCII form
+*/
+string EncodingObj::hexadecimalToAscii(string str) {
+    string returnVal;
+    queue<stack<char>> myQueue;
+    stringstream ss(str);
+
+    string token;
+    while (ss >> token) {
+        string hex = token.c_str();
+
+        stack<char> tmp;
+        for (int i = 0; i < hex.length(); i++) {
+            tmp.push(hex[i]);
+        }
+        myQueue.push(tmp);
+    }
+    
+    for (int i = 0; !myQueue.empty(); ++i) {
+        int charCode = 0;
+        for (int j = 0; !myQueue.front().empty(); j++) {
+            int val = hexadecimalToDecimal(myQueue.front().top());
+            if (val==-1) {
+                return "Invalid string";
+            }
+            charCode += pow(16, j)*val;
+            myQueue.front().pop();
+        }
+        if (charCode>126||charCode<32) {
+            charCode = 46;
+        }
+
+        char character = charCode;
+        returnVal += character;
+        myQueue.pop();
+    }
+
+    return returnVal;
+}
+
+/*
+    @param
+        an ASCII string
+    @return
+        the parameter string returned in hex values
+*/
+string EncodingObj::asciiToHexadecimal(string str) {
+    string returnVal;
+
+    for (int i = 0; i < str.length(); i++) {
+        string hex = "";
+        int charCode = str[i];
+
+        while (charCode>15) {
+            int remainderDecimal = charCode%16;
+            hex.insert(0,decimalToHexadecimal(remainderDecimal));
+            charCode /= 16;
+        }
+        int remainderDecimal = charCode%16;
+        hex.insert(0,decimalToHexadecimal(remainderDecimal));
+        returnVal += hex + " ";
+    }
+
+    return returnVal;
+}
 
 /*
     @param
@@ -285,7 +408,7 @@ string EncodingObj::textFlip(string str) {
     @return
         the corresponding hex value as a string
 */
-string EncodingObj::base10toBase16(int digit) {
+string EncodingObj::decimalToHexadecimal(int digit) {
     string returnVal;
     if (digit>=0&&digit<10) {
         returnVal = to_string(digit);
@@ -316,47 +439,11 @@ string EncodingObj::base10toBase16(int digit) {
 
 /*
     @param
-        an ASCII string
-    @return
-        the parameter string returned in hex values
-*/
-string EncodingObj::hexEncode(string str) {
-    string returnVal;
-
-    for (int i = 0; i < str.length(); i++) {
-        string hex = "";
-        int charCode = str[i];
-
-        while (charCode>15) {
-            int remainderDecimal = charCode%16;
-            hex.insert(0,base10toBase16(remainderDecimal));
-            charCode /= 16;
-        }
-        int remainderDecimal = charCode%16;
-        hex.insert(0,base10toBase16(remainderDecimal));
-        returnVal += hex + " ";
-    }
-
-    return returnVal;
-}
-
-/*
-    @param
-        none
-    @return
-        data member 'text' returned in hex values
-*/
-string EncodingObj::hexEncode() {
-    return hexEncode(text);
-}
-
-/*
-    @param
         a hexadecimal character
     @return
         its corresponding decimal integer
 */
-int EncodingObj::base16toBase10(char character) {
+int EncodingObj::hexadecimalToDecimal(char character) {
     string digits = "0123456789";
     if (digits.find(character)!=string::npos) {
         return character - '0';
@@ -386,54 +473,51 @@ int EncodingObj::base16toBase10(char character) {
 
 /*
     @param
-        a space-delimited string of hex values
+        none
     @return
         the string decoded into ASCII form
 */
-string EncodingObj::hexDecode(string str) {
-    string returnVal;
-    queue<stack<char>> myQueue;
-    stringstream ss(str);
-
-    string token;
-    while (ss >> token) {
-        string hex = token.c_str();
-
-        stack<char> tmp;
-        for (int i = 0; i < hex.length(); i++) {
-            tmp.push(hex[i]);
-        }
-        myQueue.push(tmp);
-    }
-    
-    for (int i = 0; !myQueue.empty(); ++i) {
-        int charCode = 0;
-        for (int j = 0; !myQueue.front().empty(); j++) {
-            int val = base16toBase10(myQueue.front().top());
-            if (val==-1) {
-                return "Invalid string";
-            }
-            charCode += pow(16, j)*val;
-            myQueue.front().pop();
-        }
-        if (charCode>126||charCode<32) {
-            charCode = 46;
-        }
-
-        char character = charCode;
-        returnVal += character;
-        myQueue.pop();
-    }
-
-    return returnVal;
+string EncodingObj::hexadecimalToAscii() {
+    return hexadecimalToAscii(text);
 }
 
 /*
     @param
         none
     @return
-        the string decoded into ASCII form
+        data member 'text' returned in hex values
 */
-string EncodingObj::hexDecode() {
-    return hexDecode(text);
+string EncodingObj::asciiToHexadecimal() {
+    return asciiToHexadecimal(text);
 }
+
+/*
+    @param
+        none
+    @return
+        the decimal equivalent of a hexadecimal value
+*/
+string EncodingObj::decimalToHexadecimal() {
+    return "Coming soon...";
+}
+
+/*
+    @param
+        none
+    @return
+        the hexadecimal equivalent of a decimal value
+*/
+int EncodingObj::hexadecimalToDecimal() {
+    return -1;
+}
+
+
+/*
+    SECTION 6 - BASE64
+*/
+
+
+/*
+    SECTION 7 - DECODE ALL
+*/
+

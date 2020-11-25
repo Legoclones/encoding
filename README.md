@@ -6,6 +6,7 @@ This program is written in C++ to encode and decode text. It's written to be use
 * Option `bf` - each 0 in the inputted text are turned into 1s, and viceversa
 * Option `c` (enc/dec) - each character in the inputted is rotated 0-25 characters over
 * Option `tf` - the string is turned backwards
+* Option `h` (enc/dec) - each character is encoded or decoded to or from hexadecimal
 
 Specifying encode/decode and option must be done as commandline arguments. The text is entered into a second line after pressing ENTER. See below for specifics. 
 
