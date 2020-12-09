@@ -15,9 +15,9 @@ class EncodingObj {
 
         //Section 2 - Binary
         string binaryToAscii(string str);
+        int binaryToDecimal(string str);
         string asciiToBinary(string str);
         string decimalToBinary(int num, bool eight);
-        //string binaryToDecimal(string str);
 
         //Section 3 - Caesar Shift
         string caesarShift(string str, int n);
@@ -28,8 +28,10 @@ class EncodingObj {
         //Section 5 - Hexadecimal
         string asciiToHexadecimal(string str);
         string hexadecimalToAscii(string str);
-        string decimalToHexadecimal(int digit);
-        int hexadecimalToDecimal(char character);
+        string decimalToHexadecimal(int num);
+        int hexadecimalToDecimal(string str);
+        string decCharToHexChar(int digit);
+        int hexCharToDecChar(char character);
 
         //Section 6 - Base64
         //string asciiToBase64(string str);
@@ -66,7 +68,4 @@ class EncodingObj {
         //Section 6 - Base64
         //string asciiToBase64();
         //string base64ToAscii();
-
-        //Section 7 - Decode All
-        //decodeall - this tries out everything, maybe even include a dictionary at some point
 };

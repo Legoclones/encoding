@@ -43,24 +43,32 @@ string EncodingObj::binaryToAscii(string str) {
 
     string tmp = "";
     for (int i = 0; i < str.length()/8; i++) {
-        string binary = str.substr(8*i, 8);
         char character;
-
-        int charCode = 0;
-        int val = 128;
-        for (int j = 0; j < 8; j++) {
-            charCode+=(val*(binary[j]-'0'));
-            val/=2;
+        character = binaryToDecimal(str.substr(8*i, 8));
+        if (character>126||character<32) {
+            character = 46;
         }
-        if (charCode>126||charCode<32) {
-            charCode = 46;
-        }
-        character = charCode;
         tmp+=character;
     }
     returnVal+=tmp;
     
     return returnVal;
+}
+
+/*
+    @param 
+        any string of binary values
+    @return
+        the decimal equivalent as an integer
+*/
+int EncodingObj::binaryToDecimal(string str) {
+    int charCode = 0;
+    int val = pow(2, str.length()-1);
+    for (int j = 0; j < str.length(); j++) {
+        charCode+=(val*(str[j]-'0'));
+        val/=2;
+    }
+    return charCode;
 }
 
 /*
@@ -215,7 +223,12 @@ queue<string> EncodingObj::binaryToAsciiAll() {
         the decimal equivalent of a binary number
 */
 string EncodingObj::binaryToDecimal() {
-    return "Coming soon";
+    for (int i = 0; i < text.length(); i++) {
+        if (text[i]!='0'&&text[i]!='1') {
+            return "Invalid characters";
+        }
+    }
+    return to_string(binaryToDecimal(text));
 }
 
 
@@ -340,34 +353,16 @@ string EncodingObj::textFlip() {
 */
 string EncodingObj::hexadecimalToAscii(string str) {
     string returnVal;
-    queue<stack<char>> myQueue;
+    queue<string> myQueue;
     stringstream ss(str);
 
     string token;
     while (ss >> token) {
-        string hex = token.c_str();
-
-        stack<char> tmp;
-        for (int i = 0; i < hex.length(); i++) {
-            tmp.push(hex[i]);
-        }
-        myQueue.push(tmp);
+        myQueue.push(token.c_str());
     }
     
     for (int i = 0; !myQueue.empty(); ++i) {
-        int charCode = 0;
-        for (int j = 0; !myQueue.front().empty(); j++) {
-            int val = hexadecimalToDecimal(myQueue.front().top());
-            if (val==-1) {
-                return "Invalid string";
-            }
-            charCode += pow(16, j)*val;
-            myQueue.front().pop();
-        }
-        if (charCode>126||charCode<32) {
-            charCode = 46;
-        }
-
+        int charCode = hexadecimalToDecimal(myQueue.front());
         char character = charCode;
         returnVal += character;
         myQueue.pop();
@@ -386,19 +381,49 @@ string EncodingObj::asciiToHexadecimal(string str) {
     string returnVal;
 
     for (int i = 0; i < str.length(); i++) {
-        string hex = "";
         int charCode = str[i];
-
-        while (charCode>15) {
-            int remainderDecimal = charCode%16;
-            hex.insert(0,decimalToHexadecimal(remainderDecimal));
-            charCode /= 16;
-        }
-        int remainderDecimal = charCode%16;
-        hex.insert(0,decimalToHexadecimal(remainderDecimal));
-        returnVal += hex + " ";
+        returnVal += decimalToHexadecimal(charCode) + " ";
     }
 
+    return returnVal;
+}
+
+/*
+    @param
+        any integer
+    @return
+        the hexadecimal equivalent
+*/
+string EncodingObj::decimalToHexadecimal(int num) {
+    stack<string> myStack;
+    while (num!=0) {
+        myStack.push(to_string(num%16));
+        num/=16;
+    }
+
+    string returnVal = "";
+    int loop = myStack.size();
+
+    for (int i = 0; i < loop; i++) {
+        returnVal+=myStack.top();
+        myStack.pop();
+    }
+    return returnVal;
+}
+
+/*
+    @param
+        a string of hexadecimal values
+    @return
+        the decimal equivalent
+*/
+int EncodingObj::hexadecimalToDecimal(string str) {
+    int returnVal = 0;
+    int val = pow(16, str.length()-1);
+    for (int j = 0; j < str.length(); j++) {
+        returnVal+=(val*hexCharToDecChar(str[j]));
+        val/=16;
+    }
     return returnVal;
 }
 
@@ -408,7 +433,7 @@ string EncodingObj::asciiToHexadecimal(string str) {
     @return
         the corresponding hex value as a string
 */
-string EncodingObj::decimalToHexadecimal(int digit) {
+string EncodingObj::decCharToHexChar(int digit) {
     string returnVal;
     if (digit>=0&&digit<10) {
         returnVal = to_string(digit);
@@ -443,7 +468,7 @@ string EncodingObj::decimalToHexadecimal(int digit) {
     @return
         its corresponding decimal integer
 */
-int EncodingObj::hexadecimalToDecimal(char character) {
+int EncodingObj::hexCharToDecChar(char character) {
     string digits = "0123456789";
     if (digits.find(character)!=string::npos) {
         return character - '0';
@@ -498,7 +523,14 @@ string EncodingObj::asciiToHexadecimal() {
         the decimal equivalent of a hexadecimal value
 */
 string EncodingObj::decimalToHexadecimal() {
-    return "Coming soon...";
+    int value;
+    try {
+        value = stoi(text);
+    }
+    catch (...) {
+        return "Invalid characters";
+    }
+    return decimalToHexadecimal(value);
 }
 
 /*
@@ -508,16 +540,16 @@ string EncodingObj::decimalToHexadecimal() {
         the hexadecimal equivalent of a decimal value
 */
 int EncodingObj::hexadecimalToDecimal() {
-    return -1;
+    for (int i = 0; i < text.length(); i++) {
+        if (hexCharToDecChar(text[i])==-1) {
+            return -1;
+        }
+    }
+    return hexadecimalToDecimal(text);
 }
 
 
 /*
     SECTION 6 - BASE64
-*/
-
-
-/*
-    SECTION 7 - DECODE ALL
 */
 

@@ -6,15 +6,14 @@
 
 /*
     TODOS:
-    - Implement the following functions:
-        - binaryToDecimal
-        - hexadecimalToDecimal
-        - decimalToHexadecimal
     - Update README with new options
 
     - Add base64 functions
-    - Thoroughly test (memory leaks with Valgrind)
-    - Add decodeAll function
+    - Add ascii to decimal and decimal to ascii
+    - Add XOR
+    - Add bytes
+    - Put all on one line so you can pipe commands
+    - Thoroughly test (incl memory leaks with Valgrind)
 */
 /*
     usage: ./enc [option] + ENTER
@@ -135,9 +134,6 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[1], "b642a")==0) {
         cout << encObj.base64ToAscii() << endl;
-    }
-    else if (strcasecmp(argv[1], "da")==0) {
-        cout << encObj.decodeAll() << endl;
     }*/
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;
