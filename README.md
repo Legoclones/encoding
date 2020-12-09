@@ -1,14 +1,5 @@
 # Encoding/Decoding Program README
-This program is written in C++ to encode and decode text. It's written to be used in the Linux terminal. You specify whether you want to encode or decode the data, followed by the option. There are currently 5 different options:
-
-* Option `b` (enc/dec) - each character in the inputted text is encoded to or decoded from their 8-digit binary ASCII code
-* Option `br` (enc/dec) - the above option is run, but the code moves the first character to the end of the text 7 times
-* Option `bf` - each 0 in the inputted text are turned into 1s, and viceversa
-* Option `c` (enc/dec) - each character in the inputted is rotated 0-25 characters over
-* Option `tf` - the string is turned backwards
-* Option `h` (enc/dec) - each character is encoded or decoded to or from hexadecimal
-
-Specifying encode/decode and option must be done as commandline arguments. The text is entered into a second line after pressing ENTER. See below for specifics. 
+This program is written in C++ to encode and decode text using various methods. It's written to be used in the Linux terminal and g++ compiler.
 
 To compile the program with the makefile, run this in the terminal:
 
@@ -16,7 +7,7 @@ To compile the program with the makefile, run this in the terminal:
 
 To run the program, enter this into the terminal (after compiling):
 
-`./enc [e/d] [option]`
+`./enc [option]`
 
 followed by entering the text once the greater than sign (`>`) appears. 
 
@@ -24,7 +15,7 @@ Example:
 
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc d b
+user@comp_name:~/encoding$ ./enc a2h
 text> this_is_my_inserted_text
 ...
 ```
@@ -32,6 +23,26 @@ text> this_is_my_inserted_text
 To remove the binary file after being compiled and run, use this command:
 
 `make clean`
+
+All options:
+* `a2b` - ASCII to Binary
+* `b2a` - Binary to ASCII
+* `bf` - Binary Flip
+* `a2ba` - ASCII to Binary (all)
+* `b2aa`- Binary to ASCII (all)
+* `ce` - Caesar Shift Encode
+* `cd` - Caesar Shift Decode
+* `tf` - Text Flip
+* `a2h` - ASCII to Hexadecimal
+* `h2a` - Hexadecimal to ASCII
+* `d2b` - Decimal to Binary
+* `b2d` - Binary to Decimal
+* `d2h` - Decimal to Hexadecimal
+* `h2d` - Hexadecimal to Decimal
+* `b64d` - Base64 Decode
+* `b64e` - Base64 Encode
+* `a2d` - ASCII to Decimal
+* `d2a` - Decimal to ASCII
 
 ## Binary (Option b)
 Binary encoding example:

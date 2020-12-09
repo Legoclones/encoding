@@ -12,7 +12,6 @@
     - Add ascii to decimal and decimal to ascii
     - Add XOR
     - Add bytes
-    - Put all on one line so you can pipe commands
     - Thoroughly test (incl memory leaks with Valgrind)
 */
 /*
@@ -129,10 +128,10 @@ int main(int argc, char* argv[]) {
     else if (strcasecmp(argv[1], "h2d")==0) {
         cout << encObj.hexadecimalToDecimal() << endl;
     }
-    /*else if (strcasecmp(argv[1], "a2b64")==0) {
+    /*else if (strcasecmp(argv[1], "b64d")==0) {
         cout << encObj.asciiToBase64() << endl;
     }
-    else if (strcasecmp(argv[1], "b642a")==0) {
+    else if (strcasecmp(argv[1], "b64e")==0) {
         cout << encObj.base64ToAscii() << endl;
     }*/
     else {
