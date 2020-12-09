@@ -1,15 +1,15 @@
 # Encoding/Decoding Program README
 This program is written in C++ to encode and decode text using various methods. It's written to be used in the Linux terminal and g++ compiler.
 
-To compile the program with the makefile, run this in the terminal:
+To compile the program with the makefile, enter this command into the terminal:
 
 `make`
 
-To run the program, enter this into the terminal (after compiling):
+To run the program, enter this command into the terminal (after compiling):
 
 `./enc [option]`
 
-followed by entering the text once the greater than sign (`>`) appears. 
+followed by the text once the greater-than sign (`>`) appears. 
 
 Example:
 
@@ -20,11 +20,11 @@ text> this_is_my_inserted_text
 ...
 ```
 
-To remove the binary file after being compiled and run, use this command:
+To remove the binary file, enter this command into the terminal:
 
 `make clean`
 
-All options:
+## All options
 * [ASCII to Binary](#ascii-to-binary) - `a2b`
 * [ASCII to Binary (all)](#ascii-to-binary-all) - `a2ba`
 * [ASCII to Decimal](#ascii-to-decimal) - `a2d`
@@ -53,9 +53,7 @@ text> What's your name?
 
 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
 ```
-The long string of 0s and 1s contains 17 8-digit segments because the length of the inputted text (`What's your name?`) is 17 characters, including spaces and digits. 
-
-For example, the first character in the text is `W`. It's corresponding decimal ASCII number is 87 (see [www.asciitable.com](http://www.asciitable.com/)). 87 in binary is 01010111, so `01010111` is added to the beginning of the output string. It performs that same operation for each character until the long, final output string is printed to the console. 
+Each ASCII character's corresponding decimal number (see [www.asciitable.com](http://www.asciitable.com/)) is converted into an 8-digit binary string and outputted.
 
 ## ASCII to Binary (all)
 ## ASCII to Decimal
@@ -82,9 +80,7 @@ text> 01010111011010000110000101110100001001110111001100100000011110010110111101
 
 What's your name?
 ```
-Each 8-digit string of 0s and 1s is turned back into decimal, and then converted to the corresponding ASCII character. For example, the first 8 digits in the string are `01010111`, which 87 in decimal, and that corresponds to the capital W, so `W` is added to the output string.
-
-All characters with decimal values under 31 and over 126 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up in that range, the console will print out a period (`.`) instead.
+Each 8-digit string of 0s and 1s is converted into decimal, and then to it's corresponding ASCII character. All characters with decimal values under 31 and over 126 are non-printable characters, so the console will print out a period (`.`) instead.
 
 ## Binary to ASCII (all)
 ## Binary to Decimal
