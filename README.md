@@ -44,11 +44,11 @@ All options:
 * [Hexadecimal to Decimal](#hexadecimal-to-decimal) - `h2d`
 * [Text Flip](#text-flip) -  `tf`
 
-## Binary (Option b)
-Binary encoding example:
+## ASCII to Binary
+ASCII to Binary example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc e b
+user@comp_name:~/encoding$ ./enc a2b
 text> What's your name?
 
 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
@@ -57,18 +57,58 @@ The long string of 0s and 1s contains 17 8-digit segments because the length of 
 
 For example, the first character in the text is `W`. It's corresponding decimal ASCII number is 87 (see [www.asciitable.com](http://www.asciitable.com/)). 87 in binary is 01010111, so `01010111` is added to the beginning of the output string. It performs that same operation for each character until the long, final output string is printed to the console. 
 
-
-Binary decoding example:
+## ASCII to Binary (all)
+## ASCII to Decimal
+## ASCII to Hexadecimal
+## Base64 Encode
+## Base64 Decode
+## Binary Flip
+Binary Flip example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc d b
+user@comp_name:~/encoding$ ./enc bf
+text> 1011101101000011
+
+0100010010111100
+```
+Each 0 in the text is converted to a 1, and viceversa.
+
+## Binary to ASCII
+Binary to ASCII example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc b2a
 text> 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
 
-Successful and complete conversion:              What's your name?
+What's your name?
 ```
-The decoding process does the exact opposite of the encoding process - it takes each 8-digit string of 0s and 1s, turns it back into base 10 or decimal, and then converts that back to the corresponding character. For example, the first 8 digits in the string are `01010111`, which 87 in decimal or base 10, and that corresponds to the capital W, so `W` is added to the output string. 
+Each 8-digit string of 0s and 1s is turned back into decimal, and then converted to the corresponding ASCII character. For example, the first 8 digits in the string are `01010111`, which 87 in decimal, and that corresponds to the capital W, so `W` is added to the output string.
 
-All characters with decimal values under 31 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up less than 32, the console will print out `Non-printable characters converted to periods` and will replace each occurence of a non-printable character with `.`. If there are no non-printable characters, it will print out the message `Successful and complete conversion`.
+All characters with decimal values under 31 and over 126 are non-printable characters that will make the terminal act weird. If there are any inputted binary values that end up in that range, the console will print out a period (`.`) instead.
+
+## Binary to ASCII (all)
+## Binary to Decimal
+## Caesar Shift Encode
+## Caesar Shift Decode
+## Decimal to ASCII
+## Decimal to Binary
+## Decimal to Hexadecimal
+## Hexadecimal to ASCII
+## Hexadecimal to Decimal
+## Text Flip
+Text Flip example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc tf
+text> hey!
+
+!yeh
+```
+The string is printed out backwards.
+
+
+
+
 
 ## Binary Rotation (Option br)
 Binary rotation encoding example:
@@ -107,17 +147,6 @@ text> 10111011010000110000101110100001001110111001100100000011110010110111101110
 Binary decoding rotations performs the binary decoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary decoding of the text WITHOUT moving any 0s or 1s. 
 
 You will note that sometimes the actual message has characters out of order, but the message should be easily recognizable. 
-
-## Binary Flip (Option bf)
-Binary flip example:
-```
-user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc e bf
-text> 1011101101000011
-
-0100010010111100
-```
-Each 0 in the text is converted to a 1, and viceversa. Note - it doesn't matter whether you put `e` or `d`, both will perform the same operation. 
 
 ## Caesar Shift (Option c)
 Caesar shift encoding example:
@@ -190,17 +219,6 @@ text> Hi! What's your name?
 25 characters shifted: Ij! Xibu't zpvs obnf?
 ```
 Caesar shift decoding shifts each character over n characters to the left.
-
-## Text Flip (Option tf)
-Text flip example:
-```
-user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc e tf
-text> hey!
-
-!yeh
-```
-The string is printed out backwards. Note - it doesn't matter whether you put `e` or `d`, both will perform the same operation. 
 
 ## Hexadecimal (Option h)
 Hexadecimal encoding example:
