@@ -25,24 +25,24 @@ To remove the binary file after being compiled and run, use this command:
 `make clean`
 
 All options:
-* `a2b` - ASCII to Binary
-* `b2a` - Binary to ASCII
-* `bf` - Binary Flip
-* `a2ba` - ASCII to Binary (all)
-* `b2aa`- Binary to ASCII (all)
-* `ce` - Caesar Shift Encode
-* `cd` - Caesar Shift Decode
-* `tf` - Text Flip
-* `a2h` - ASCII to Hexadecimal
-* `h2a` - Hexadecimal to ASCII
-* `d2b` - Decimal to Binary
-* `b2d` - Binary to Decimal
-* `d2h` - Decimal to Hexadecimal
-* `h2d` - Hexadecimal to Decimal
-* `b64d` - Base64 Decode
-* `b64e` - Base64 Encode
-* `a2d` - ASCII to Decimal
-* `d2a` - Decimal to ASCII
+* [ASCII to Binary](#ascii-to-binary) - `a2b`
+* [ASCII to Binary (all)](#ascii-to-binary-all) - `a2ba`
+* [ASCII to Decimal](#ascii-to-decimal) - `a2d`
+* [ASCII to Hexadecimal](#ascii-to-hexadecimal) - `a2h`
+* [Base64 Encode](#base64-encode) - `b64e`
+* [Base64 Decode](#base64-decode) - `b64d`
+* [Binary Flip](#binary-flip) - `bf`
+* [Binary to ASCII](#binary-to-ascii) - `b2a`
+* [Binary to ASCII (all)](#binary-to-ascii-all) - `b2aa`
+* [Binary to Decimal](#binary-to-decimal) - `b2d`
+* [Caesar Shift Encode](#caesar-shift-encode) - `ce`
+* [Caesar Shift Decode](#caesar-shift-decode) - `cd`
+* [Decimal to ASCII](#decimal-to-ascii) - `d2a`
+* [Decimal to Binary](#decimal-to-binary) -  `d2b`
+* [Decimal to Hexadecimal](#decimal-to-hexadecimal) - `d2h`
+* [Hexadecimal to ASCII](#hexadecimal-to-ascii) - `h2a`
+* [Hexadecimal to Decimal](#hexadecimal-to-decimal) - `h2d`
+* [Text Flip](#text-flip) -  `tf`
 
 ## Binary (Option b)
 Binary encoding example:
