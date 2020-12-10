@@ -673,6 +673,84 @@ string EncodingObj::base64Decode() {
     SECTION 8 - BYTES
 */
 
+/*
+    @param
+        a string in byte form
+    @return
+        a string of values translated from byte form (spaces removed)
+*/
+string EncodingObj::fromBytes(string str) {
+    string returnVal = "";
+    stringstream ss(text);
+
+    string token;
+    while (ss >> token) {
+        returnVal += token;
+    }
+
+    return returnVal;
+}
+
+/*
+    @param
+        none
+    @return
+        a string of hexadecimal values translated into byte form
+*/
+string EncodingObj::hexadecimalToBytes() {
+    string returnVal = "";
+
+    if (text.length()%2==1) {
+        text = "0" + text;
+    }
+
+    for (int i = 0; i < text.length()/2; i++) {
+        returnVal += text.substr(i*2, 2) + " ";
+    }
+    return returnVal;
+}
+
+/*
+    @param
+        none
+    @return
+        a string of hexadecimal values translated from byte form
+*/
+string EncodingObj::hexadecimalFromBytes() {
+    return fromBytes(text);
+}
+
+/*
+    @param
+        none
+    @return
+        a string of binary values translated into byte form
+*/
+string EncodingObj::binaryToBytes() {
+    string returnVal = "";
+
+    int remainder = text.length()%8;
+    if (remainder!=0) {
+        for (int i = 0; i < 8-remainder; i++) {
+            text = "0" + text;
+        }
+    }
+
+    for (int i = 0; i < text.length()/8; i++) {
+        returnVal += text.substr(i*8, 8) + " ";
+    }
+    return returnVal;
+}
+
+/*
+    @param
+        none
+    @return
+        a string of binary values translated from byte form
+*/
+string EncodingObj::binaryFromBytes() {
+    return fromBytes(text);
+}
 
 
 /*

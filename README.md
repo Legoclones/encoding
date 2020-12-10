@@ -32,15 +32,19 @@ To remove the binary file, enter this command into the terminal:
 * [Base64 Encode](#base64-encode) - `b64e`
 * [Base64 Decode](#base64-decode) - `b64d`
 * [Binary Flip](#binary-flip) - `bf`
+* [Binary from Bytes](#binary-from-bytes) - `bfb`
 * [Binary to ASCII](#binary-to-ascii) - `b2a`
 * [Binary to ASCII (all)](#binary-to-ascii-all) - `b2aa`
+* [Binary to Bytes](#binary-to-bytes) - `bb`
 * [Binary to Decimal](#binary-to-decimal) - `b2d`
 * [Caesar Shift Encode](#caesar-shift-encode) - `ce`
 * [Caesar Shift Decode](#caesar-shift-decode) - `cd`
 * [Decimal to ASCII](#decimal-to-ascii) - `d2a`
 * [Decimal to Binary](#decimal-to-binary) -  `d2b`
 * [Decimal to Hexadecimal](#decimal-to-hexadecimal) - `d2h`
+* [Hexadecimal from Bytes](#hexadecimal-from-bytes) - `hfb`
 * [Hexadecimal to ASCII](#hexadecimal-to-ascii) - `h2a`
+* [Hexadecimal to Bytes](#hexadecimal-to-bytes) - `hb`
 * [Hexadecimal to Decimal](#hexadecimal-to-decimal) - `h2d`
 * [Text Flip](#text-flip) -  `tf`
 
@@ -128,6 +132,17 @@ text> 1011101101000011
 ```
 Each 0 in the text is converted to a 1, and viceversa.
 
+## Binary from Bytes
+Binary from Bytes example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc bfb
+text> 00011011 01110110 11101101
+
+000110110111011011101101
+```
+All the spaces are removed and the text is printed out together. 
+
 ## Binary to ASCII
 Binary to ASCII example:
 ```
@@ -158,6 +173,17 @@ text> 10111011010000110000101110100001001110111001100100000011110010110111101110
 Binary to ASCII (all) performs the binary decoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary decoding of the text WITHOUT moving any 0s or 1s. 
 
 You will note that sometimes the actual message has a character out of order, but the message should be easily recognizable. 
+
+## Binary to Bytes
+Binary to Bytes example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc bb
+text> 000110110111011011101101
+
+00011011 01110110 11101101
+```
+The binary values are split into 8-bit segments. If the total number of bits is not a multiple of 8, leading zeros are added. For example, if the text 1011 was submitted, the program will turn it into 00001011. 
 
 ## Binary to Decimal
 Binary to Decimal example:
@@ -275,6 +301,17 @@ f10
 ```
 Decimal to Hexadecimal converts the number from base10 (decimal) to base16 (hexadecimal).
 
+## Hexadecimal from Bytes
+Hexadecimal from Bytes example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc hfb
+text> af b4 56
+
+afb456
+```
+All the spaces are removed and the text is printed out together. 
+
 ## Hexadecimal to ASCII
 Hexadecimal to ASCII example:
 ```
@@ -285,6 +322,17 @@ text> 48 69 2c 20 77 68 61 74 27 73 20 79 6f 75 72 20 6e 61 6d 65 3f
 Hi, what's your name?
 ```
 Hexadecimal to ASCII takes each hexadecimal value and returns its corresponding ASCII character.
+
+## Hexadecimal to Bytes
+Hexadecimal to Bytes example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc hb
+text> afb456
+
+af b4 56
+```
+The hexadecimal values are split into pairs of characters. If the total number of characters is not even, a lead zero is added. For example, if the text afb45 was submitted, the program will turn it into 0afb45.
 
 ## Hexadecimal to Decimal
 Hexadecimal to Decimal example:

@@ -9,7 +9,6 @@
     - 
 
     - Add XOR
-    - Add bytes
     - Thoroughly test (incl memory leaks with Valgrind)
 */
 /*
@@ -137,6 +136,18 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[1], "b64e")==0) {
         cout << encObj.base64Encode() << endl;
+    }
+    else if (strcasecmp(argv[1], "hb")==0) {
+        cout << encObj.hexadecimalToBytes() << endl;
+    }
+    else if (strcasecmp(argv[1], "hfb")==0) {
+        cout << encObj.hexadecimalFromBytes() << endl;
+    }
+    else if (strcasecmp(argv[1], "bb")==0) {
+        cout << encObj.binaryToBytes() << endl;
+    }
+    else if (strcasecmp(argv[1], "bfb")==0) {
+        cout << encObj.binaryFromBytes() << endl;
     }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;

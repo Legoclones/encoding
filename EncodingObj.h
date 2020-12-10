@@ -40,6 +40,7 @@ class EncodingObj {
         string base64Decode(string str);
 
         //Section 8 - Bytes
+        string fromBytes(string str);
 
         //Section 9 - XOR
         
@@ -80,6 +81,10 @@ class EncodingObj {
         string base64Encode();
 
         //Section 8 - Bytes
+        string hexadecimalToBytes();
+        string hexadecimalFromBytes();
+        string binaryToBytes();
+        string binaryFromBytes();
 
         //Section 9 - XOR
 };
