@@ -17,7 +17,7 @@ class EncodingObj {
         string binaryToAscii(string str);
         int binaryToDecimal(string str);
         string asciiToBinary(string str);
-        string decimalToBinary(int num, bool eight);
+        string decimalToBinary(int num, int leadZero);
 
         //Section 3 - Caesar Shift
         string caesarShift(string str, int n);
@@ -36,8 +36,12 @@ class EncodingObj {
         //Section 6 - ASCII/Decimal
 
         //Section 7 - Base64
-        //string asciiToBase64(string str);
-        //string base64ToAscii(string str);
+        string base64Encode(string str);
+        string base64Decode(string str);
+
+        //Section 8 - Bytes
+
+        //Section 9 - XOR
         
     public:
         //Section 1 - Initializers/Destructors
@@ -72,6 +76,10 @@ class EncodingObj {
         string asciiToDecimal();
 
         //Section 7 - Base64
-        //string asciiToBase64();
-        //string base64ToAscii();
+        string base64Decode();
+        string base64Encode();
+
+        //Section 8 - Bytes
+
+        //Section 9 - XOR
 };

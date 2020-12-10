@@ -8,14 +8,12 @@
     TODOS:
     - 
 
-    - Add base64 functions
-    - Add ascii to decimal and decimal to ascii
     - Add XOR
     - Add bytes
     - Thoroughly test (incl memory leaks with Valgrind)
 */
 /*
-    usage: ./enc [option] + ENTER
+    usage: ./enc [options] + ENTER
     >[insert text here] + ENTER
 */
 int main(int argc, char* argv[]) {
@@ -134,12 +132,12 @@ int main(int argc, char* argv[]) {
     else if (strcasecmp(argv[1], "d2a")==0) {
         cout << encObj.decimalToAscii() << endl;
     }
-    /*else if (strcasecmp(argv[1], "b64d")==0) {
-        cout << encObj.asciiToBase64() << endl;
+    else if (strcasecmp(argv[1], "b64d")==0) {
+        cout << encObj.base64Decode() << endl;
     }
     else if (strcasecmp(argv[1], "b64e")==0) {
-        cout << encObj.base64ToAscii() << endl;
-    }*/
+        cout << encObj.base64Encode() << endl;
+    }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;
         return 1;

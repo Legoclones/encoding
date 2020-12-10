@@ -43,8 +43,7 @@ string EncodingObj::binaryToAscii(string str) {
 
     string tmp = "";
     for (int i = 0; i < str.length()/8; i++) {
-        char character;
-        character = binaryToDecimal(str.substr(8*i, 8));
+        char character = binaryToDecimal(str.substr(8*i, 8));
         if (character>126||character<32) {
             character = 46;
         }
@@ -81,7 +80,7 @@ string EncodingObj::asciiToBinary(string str) {
     string returnVal = "";
     for (int i = 0; i < str.length(); i++) {
         int charCode = int(str[i]);
-        returnVal+=decimalToBinary(charCode, true);
+        returnVal+=decimalToBinary(charCode, 8);
     }
     return returnVal;
 }
@@ -94,7 +93,7 @@ string EncodingObj::asciiToBinary(string str) {
     @return
         a binary number
 */
-string EncodingObj::decimalToBinary(int num, bool eight) {
+string EncodingObj::decimalToBinary(int num, int leadZero) {
     stack<string> binaryStack;
     while (num!=0) {
         binaryStack.push(to_string(num%2));
@@ -104,8 +103,8 @@ string EncodingObj::decimalToBinary(int num, bool eight) {
     string returnVal = "";
     int loop = binaryStack.size();
 
-    if (eight) {
-        for (int i = 0; i < 8-loop; i++) {
+    if (leadZero>0) {
+        for (int i = 0; i < leadZero-loop; i++) {
             returnVal+="0";
         }
     }
@@ -155,7 +154,7 @@ string EncodingObj::decimalToBinary() {
     string returnVal;
     try {
         int num = stoi(text);
-        returnVal = decimalToBinary(num, false);
+        returnVal = decimalToBinary(num, 0);
     }
     catch (...) {
         returnVal = "Invalid input";
@@ -595,4 +594,87 @@ string EncodingObj::asciiToDecimal() {
 
 /*
     SECTION 7 - BASE64
+*/
+
+/*
+    @param
+        a plaintext string
+    @return
+        the base64 equivalent of the plaintext string
+*/
+string EncodingObj::base64Encode(string str) {
+    string returnVal = "";
+    string base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+    string binary  = asciiToBinary(str);
+    int loop = 6-(binary.length()%6);
+    for (int i = 0; i < loop; i++) {
+        binary+="0";
+    }
+
+    for (int i = 0; i < binary.length()/6; i++) {
+        int dec = binaryToDecimal(binary.substr(6*i, 6));
+        returnVal += base64[dec];
+    }
+
+    loop = 4-(returnVal.length()%4);
+    for (int i = 0; i < loop; i++) {
+        returnVal+="=";
+    }
+
+    return returnVal;
+}
+
+/*
+    @param
+        a base64-encoded string
+    @return
+        the inputted code's plaintext equivalent
+*/
+string EncodingObj::base64Decode(string str) {
+    string returnVal = "";
+    string base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+    string binary = "";
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] != '=') {
+            int code = base64.find(str[i]);
+            if (code==-1) {
+                return "Invalid characters";
+            }
+            binary+=decimalToBinary(code, 6);
+        }
+    }
+    return binaryToAscii(binary);
+}
+
+/*
+    @param
+        none
+    @return
+        the base64 equivalent of plaintext
+*/
+string EncodingObj::base64Encode() {
+    return base64Encode(text);
+}
+
+/*
+    @param
+        none
+    @return
+        a string of base64-encoded information turned back into plaintext
+*/
+string EncodingObj::base64Decode() {
+    return base64Decode(text);
+}
+
+
+/*
+    SECTION 8 - BYTES
+*/
+
+
+
+/*
+    SECTION 9 - XOR
 */

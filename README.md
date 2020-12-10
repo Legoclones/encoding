@@ -96,10 +96,26 @@ text> Hi, what's your name?
 ASCII to Hexadecimal takes each character and returns a space-delimited string of the hexadecimal equivalent of the ASCII code for that character.
 
 ## Base64 Encode
-Coming soon...
+Base64 Encode example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc b64e
+text> Hi! What's your name?
+
+SGkhIFdoYXQncyB5b3VyIG5hbWU/A===
+```
+The plaintext is encoded into base64 format.
 
 ## Base64 Decode
-Coming soon...
+Base64 Decode example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc b64d
+text> SGkhIFdoYXQncyB5b3VyIG5hbWU/A===
+
+Hi! What's your name?
+```
+The base64-encoded string is decoded into plaintext.
 
 ## Binary Flip
 Binary Flip example:
