@@ -56,10 +56,43 @@ text> What's your name?
 Each ASCII character's corresponding decimal number (see [www.asciitable.com](http://www.asciitable.com/)) is converted into an 8-digit binary string and outputted.
 
 ## ASCII to Binary (all)
+ASCII to Binary (all) example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc a2ba
+text> What's your name?
+
+0 digits rotated: 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
+1 digit rotated:  1010111011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110
+2 digits rotated: 0101110110100001100001011101000010011101110011001000000111100101101111011101010111001000100000011011100110000101101101011001010011111101
+3 digits rotated: 1011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010
+4 digits rotated: 0111011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101
+5 digits rotated: 1110110100001100001011101000010011101110011001000000111100101101111011101010111001000100000011011100110000101101101011001010011111101010
+6 digits rotated: 1101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010101
+7 digits rotated: 1011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101011
+```
+ASCII to Binary (all) performs the ASCII to Binary operation on the text, then prints it out 8 times, transferring one binary character from the front to the back. The line on top is the binary encoding of the text WITHOUT moving any characters.
+
 ## ASCII to Decimal
+Coming soon...
+
 ## ASCII to Hexadecimal
+ASCII to Hexadecimal example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc a2h
+text> Hi, what's your name?
+
+48 69 2c 20 77 68 61 74 27 73 20 79 6f 75 72 20 6e 61 6d 65 3f
+```
+ASCII to Hexadecimal takes each character and returns a space-delimited string of the hexadecimal equivalent of the ASCII code for that character.
+
 ## Base64 Encode
+Coming soon...
+
 ## Base64 Decode
+Coming soon...
+
 ## Binary Flip
 Binary Flip example:
 ```
@@ -83,52 +116,10 @@ What's your name?
 Each 8-digit string of 0s and 1s is converted into decimal, and then to it's corresponding ASCII character. All characters with decimal values under 31 and over 126 are non-printable characters, so the console will print out a period (`.`) instead.
 
 ## Binary to ASCII (all)
-## Binary to Decimal
-## Caesar Shift Encode
-## Caesar Shift Decode
-## Decimal to ASCII
-## Decimal to Binary
-## Decimal to Hexadecimal
-## Hexadecimal to ASCII
-## Hexadecimal to Decimal
-## Text Flip
-Text Flip example:
+Binary to ASCII (all) example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc tf
-text> hey!
-
-!yeh
-```
-The string is printed out backwards.
-
-
-
-
-
-## Binary Rotation (Option br)
-Binary rotation encoding example:
-```
-user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc e br
-text> What's your name?
-
-0 digits rotated: 0101011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111
-1 digit rotated:  1010111011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110
-2 digits rotated: 0101110110100001100001011101000010011101110011001000000111100101101111011101010111001000100000011011100110000101101101011001010011111101
-3 digits rotated: 1011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010
-4 digits rotated: 0111011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101
-5 digits rotated: 1110110100001100001011101000010011101110011001000000111100101101111011101010111001000100000011011100110000101101101011001010011111101010
-6 digits rotated: 1101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010101
-7 digits rotated: 1011010000110000101110100001001110111001100100000011110010110111101110101011100100010000001101110011000010110110101100101001111110101011
-```
-Binary rotations performs the binary encoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary encoding of the text WITHOUT moving any characters. 
-
-
-Binary rotation decoding example:
-```
-user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc d br
+user@comp_name:~/encoding$ ./enc b2aa
 text> 1011101101000011000010111010000100111011100110010000001111001011011110111010101110010001000000110111001100001011011010110010100111111010
 
 0 digits rotated: .C..;...{...s.k).
@@ -140,15 +131,26 @@ text> 10111011010000110000101110100001001110111001100100000011110010110111101110
 6 digits rotated: ...N.@....@....~.
 7 digits rotated: ................]
 ```
-Binary decoding rotations performs the binary decoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary decoding of the text WITHOUT moving any 0s or 1s. 
+Binary to ASCII (all) performs the binary decoding operation on the text, then prints it out 8 times, transferring one binary character from the front of the text to the back. The line on top is the binary decoding of the text WITHOUT moving any 0s or 1s. 
 
-You will note that sometimes the actual message has characters out of order, but the message should be easily recognizable. 
+You will note that sometimes the actual message has a character out of order, but the message should be easily recognizable. 
 
-## Caesar Shift (Option c)
-Caesar shift encoding example:
+## Binary to Decimal
+Binary to Decimal example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc e c
+user@comp_name:~/encoding$ ./enc b2d
+text> 1001
+
+9
+```
+Binary to Decimal converts a number from base2 (binary) to base10 (decimal).
+
+## Caesar Shift Encode
+Caesar Shift Encoding example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc ce
 text> Hi! What's your name?
 
 0 characters shifted: Hi! What's your name?
@@ -178,13 +180,13 @@ text> Hi! What's your name?
 24 characters shifted: Fg! Ufyr'q wmsp lykc?
 25 characters shifted: Gh! Vgzs'r xntq mzld?
 ```
-Caesar shift encoding shifts each character over n characters to the right.  
+Caesar Shift Encoding shifts each character over n characters to the right. Symbols and digits are ignored. 
 
-
+## Caesar Shift Decode
 Caesar shift decoding example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc d c
+user@comp_name:~/encoding$ ./enc ce
 text> Hi! What's your name?
 
 0 characters shifted: Hi! What's your name?
@@ -214,26 +216,62 @@ text> Hi! What's your name?
 24 characters shifted: Jk! Yjcv'u aqwt pcog?
 25 characters shifted: Ij! Xibu't zpvs obnf?
 ```
-Caesar shift decoding shifts each character over n characters to the left.
+Caesar Shift Decoding shifts each character over n characters to the left. Symbols and digits are ignored. 
 
-## Hexadecimal (Option h)
-Hexadecimal encoding example:
+## Decimal to ASCII
+Coming soon...
+
+## Decimal to Binary
+Decimal to Binary example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc e h
-text> Hi, what's your name?
+user@comp_name:~/encoding$ ./enc d2b
+text> 9
 
-48 69 2c 20 77 68 61 74 27 73 20 79 6f 75 72 20 6e 61 6d 65 3f
+1001
 ```
-Hex encoding takes each character and returns a space-delimited string of the hexadecimal equivalent of the ASCII code for that character.
+Decimal to Binary converts a number from base10 (decimal) to base2 (binary).
 
-
-Hexadecimal decoding example:
+## Decimal to Hexadecimal
+Decimal to Hexadecimal example:
 ```
 user@comp_name:~/encoding$ make
-user@comp_name:~/encoding$ ./enc d h
+user@comp_name:~/encoding$ ./enc d2h
+text> 3856
+
+f10
+```
+Decimal to Hexadecimal converts the number from base10 (decimal) to base16 (hexadecimal).
+
+## Hexadecimal to ASCII
+Hexadecimal to ASCII example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc h2a
 text> 48 69 2c 20 77 68 61 74 27 73 20 79 6f 75 72 20 6e 61 6d 65 3f
 
 Hi, what's your name?
 ```
-Hex decoding takes each hexadecimal value and returns its corresponding ASCII character.
+Hexadecimal to ASCII takes each hexadecimal value and returns its corresponding ASCII character.
+
+## Hexadecimal to Decimal
+Hexadecimal to Decimal example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc h2d
+text> f10
+
+3856
+```
+Hexadecimal to Decimal converts the number from base16 (hexadecimal) to base10 (decimal).
+
+## Text Flip
+Text Flip example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc tf
+text> hey!
+
+!yeh
+```
+The string is printed out backwards.

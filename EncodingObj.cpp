@@ -397,7 +397,7 @@ string EncodingObj::asciiToHexadecimal(string str) {
 string EncodingObj::decimalToHexadecimal(int num) {
     stack<string> myStack;
     while (num!=0) {
-        myStack.push(to_string(num%16));
+        myStack.push(decCharToHexChar(num%16));
         num/=16;
     }
 
