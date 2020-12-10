@@ -33,7 +33,9 @@ class EncodingObj {
         string decCharToHexChar(int digit);
         int hexCharToDecChar(char character);
 
-        //Section 6 - Base64
+        //Section 6 - ASCII/Decimal
+
+        //Section 7 - Base64
         //string asciiToBase64(string str);
         //string base64ToAscii(string str);
         
@@ -65,7 +67,11 @@ class EncodingObj {
         string decimalToHexadecimal();
         int hexadecimalToDecimal();
 
-        //Section 6 - Base64
+        //Section 6 - ASCII/Decimal
+        string decimalToAscii();
+        string asciiToDecimal();
+
+        //Section 7 - Base64
         //string asciiToBase64();
         //string base64ToAscii();
 };

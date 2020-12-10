@@ -6,7 +6,7 @@
 
 /*
     TODOS:
-    - Update README with new options
+    - 
 
     - Add base64 functions
     - Add ascii to decimal and decimal to ascii
@@ -127,6 +127,12 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[1], "h2d")==0) {
         cout << encObj.hexadecimalToDecimal() << endl;
+    }
+    else if (strcasecmp(argv[1], "a2d")==0) {
+        cout << encObj.asciiToDecimal() << endl;
+    }
+    else if (strcasecmp(argv[1], "d2a")==0) {
+        cout << encObj.decimalToAscii() << endl;
     }
     /*else if (strcasecmp(argv[1], "b64d")==0) {
         cout << encObj.asciiToBase64() << endl;

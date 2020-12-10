@@ -74,7 +74,15 @@ text> What's your name?
 ASCII to Binary (all) performs the ASCII to Binary operation on the text, then prints it out 8 times, transferring one binary character from the front to the back. The line on top is the binary encoding of the text WITHOUT moving any characters.
 
 ## ASCII to Decimal
-Coming soon...
+ASCII to Decimal example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc a2d
+text> These are equivalent
+
+84 104 101 115 101 32 97 114 101 32 101 113 117 105 118 97 108 101 110 116
+```
+ASCII to Decimal takes each character and returns a space-delimited string of the decimal equivalents of each ASCII character.
 
 ## ASCII to Hexadecimal
 ASCII to Hexadecimal example:
@@ -219,7 +227,15 @@ text> Hi! What's your name?
 Caesar Shift Decoding shifts each character over n characters to the left. Symbols and digits are ignored. 
 
 ## Decimal to ASCII
-Coming soon...
+Decimal to ASCII example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc d2a
+text> 84 104 101 115 101 32 97 114 101 32 101 113 117 105 118 97 108 101 110 116
+
+These are equivalent
+```
+Decimal to ASCII takes each decimal number and returns the ASCII character with that code.
 
 ## Decimal to Binary
 Decimal to Binary example:

@@ -353,19 +353,13 @@ string EncodingObj::textFlip() {
 */
 string EncodingObj::hexadecimalToAscii(string str) {
     string returnVal;
-    queue<string> myQueue;
     stringstream ss(str);
 
     string token;
     while (ss >> token) {
-        myQueue.push(token.c_str());
-    }
-    
-    for (int i = 0; !myQueue.empty(); ++i) {
-        int charCode = hexadecimalToDecimal(myQueue.front());
+        int charCode = hexadecimalToDecimal(token.c_str());
         char character = charCode;
         returnVal += character;
-        myQueue.pop();
     }
 
     return returnVal;
@@ -550,6 +544,55 @@ int EncodingObj::hexadecimalToDecimal() {
 
 
 /*
-    SECTION 6 - BASE64
+    SECTION 6 - ASCII/DECIMAL
 */
 
+/*
+    @param
+        none
+    @return
+        ASCII characters based on their decimal equivalent
+*/
+string EncodingObj::decimalToAscii() {
+    string returnVal = "";
+    stringstream ss(text);
+
+    string token;
+    while (ss >> token) {
+        int charCode;
+        try {
+            charCode = stoi(token);
+        }
+        catch (...) {
+            return "Invalid input";
+        }
+        if (charCode<32||charCode>126) {
+            charCode = 46;
+        }
+        char character = charCode;
+        returnVal += character;
+    }
+
+    return returnVal;
+}
+
+/*
+    @param
+        none
+    @return
+        a space-delimited string of the decimal equivalents of each ASCII character
+*/
+string EncodingObj::asciiToDecimal() {
+    string returnVal = "";
+
+    for (int i = 0; i < text.length(); i++) {
+        int charCode = text[i];
+        returnVal += to_string(charCode) + " ";
+    }
+    return returnVal;
+}
+
+
+/*
+    SECTION 7 - BASE64
+*/
