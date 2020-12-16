@@ -6,10 +6,10 @@
 
 /*
     TODOS:
-    - 
+    - Add baconian cipher to README
 
     - Add XOR
-    - Thoroughly test (incl memory leaks with Valgrind)
+    - Thoroughly test (incl memory leaks with Valgrind) starting with baconian ciphers
 */
 /*
     usage: ./enc [options] + ENTER
@@ -148,6 +148,12 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[1], "bfb")==0) {
         cout << encObj.binaryFromBytes() << endl;
+    }
+    else if (strcasecmp(argv[1], "bce")==0) {
+        cout << encObj.baconianCipherEncode() << endl;
+    }
+    else if (strcasecmp(argv[1], "bcd")==0) {
+        cout << encObj.baconianCipherDecode() << endl;
     }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;

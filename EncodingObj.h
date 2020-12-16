@@ -43,6 +43,8 @@ class EncodingObj {
         string fromBytes(string str);
 
         //Section 9 - XOR
+
+        //Section 10 - Baconian Cipher
         
     public:
         //Section 1 - Initializers/Destructors
@@ -87,4 +89,8 @@ class EncodingObj {
         string binaryFromBytes();
 
         //Section 9 - XOR
+
+        //Section 10 - Baconian Cipher
+        string baconianCipherEncode();
+        string baconianCipherDecode();
 };

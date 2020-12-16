@@ -756,3 +756,128 @@ string EncodingObj::binaryFromBytes() {
 /*
     SECTION 9 - XOR
 */
+
+
+/*
+    SECTION 10 - BACONIAN CIPHER
+*/
+
+/*
+    @param
+        none
+    @return
+        plaintext version of Baconian-encoded message
+*/
+string EncodingObj::baconianCipherDecode() {
+    string returnVal = "";
+    string alphabet = "abcdefghiklmnopqrstuwxyz";
+    string input;
+    char letterOne = text[0];
+    char letterTwo;
+
+    if (text.length()==1) {
+        return "Insufficient characters";
+    }
+
+    int h = 0;
+    while (text[h] == letterOne && text[h] != ' ' && h != text.length()-1) {
+        h++;
+    }
+    letterTwo = text[h];
+
+    cout << "If you do not know which letter is 'A' in the Baconian Cipher or which is 'B', then leave blank." << endl;
+
+    cout << "First letter> ";
+    getline(cin, input);
+    if (input.length()>0) {
+        letterOne = input[0];
+    }
+    cout << "First letter is " << letterOne << endl;
+
+    cout << "Second letter> ";
+    getline(cin, input);
+    if (input.length()>0) {
+        letterTwo = input[0];
+    }
+    cout << "Second letter is " << letterTwo << endl << endl;
+
+    string tmp = "";
+    for (int i = 0; i < text.length(); i++) {
+        if (text[i]==letterOne) {
+            tmp += '0';
+        }
+        else if (text[i]==letterTwo) {
+            tmp += '1';
+        }
+        else {
+            returnVal += text[i];
+        }
+
+        if (tmp.length()==5) {
+            int index = binaryToDecimal(tmp);
+            if (index > 25) {
+                returnVal += ".";
+            }
+            else {
+                returnVal += alphabet[index];
+            }
+            tmp = "";
+        }
+    }
+
+    returnVal += "\n\n(If this message looks incorrect, try the program again, but switching the first and second letters)\n";
+
+    return returnVal;
+}
+
+/*
+    @param
+        none
+    @return
+        a plaintext message encoded using the Baconian Cipher
+*/
+string EncodingObj::baconianCipherEncode() {
+    char letterOne = 'A';
+    char letterTwo = 'B';
+    string input;
+    cout << "If no letters are specified, the default is A and B." << endl;
+
+    cout << "First letter> ";
+    getline(cin, input);
+    if (input.length()>0) {
+        letterOne = input[0];
+    }
+
+    cout << "Second letter> ";
+    getline(cin, input);
+    if (input.length()>0) {
+        letterTwo = input[0];
+    }
+
+    cout << endl;
+
+    string returnVal = "";
+    string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+    for (int i = 0; i < text.length(); i++) {
+        int index = alphabet.find(tolower(text[i]));
+        if (index == -1) {
+            returnVal += text[i];
+        }
+        else {
+            if (index>8) {index--;}
+            if (index>19) {index--;}
+            string binary = decimalToBinary(index, 5);
+            for (int j = 0; j < binary.length(); j++) {
+                if (binary[j]=='0') {
+                    returnVal += letterOne;
+                }
+                else {
+                    returnVal += letterTwo;
+                }
+            }
+        }
+    }
+
+    return returnVal;
+}
