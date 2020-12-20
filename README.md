@@ -29,6 +29,8 @@ To remove the binary file, enter this command into the terminal:
 * [ASCII to Binary (all)](#ascii-to-binary-all) - `a2ba`
 * [ASCII to Decimal](#ascii-to-decimal) - `a2d`
 * [ASCII to Hexadecimal](#ascii-to-hexadecimal) - `a2h`
+* [Baconian Cipher Encode](#baconian-cipher-encode) - `bce`
+* [Baconian Cipher Decode](#baconian-cipher-decode) - `bcd`
 * [Base64 Encode](#base64-encode) - `b64e`
 * [Base64 Decode](#base64-decode) - `b64d`
 * [Binary Flip](#binary-flip) - `bf`
@@ -98,6 +100,40 @@ text> Hi, what's your name?
 48 69 2c 20 77 68 61 74 27 73 20 79 6f 75 72 20 6e 61 6d 65 3f
 ```
 ASCII to Hexadecimal takes each character and returns a space-delimited string of the hexadecimal equivalent of the ASCII code for that character.
+
+## Baconian Cipher Encode
+Baconian Cipher Encode example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc bce
+text> Hi, how are you?
+
+If no letters are specified, the default is A and B.
+First letter> 
+Second letter> l
+
+AAlllAlAAA, AAlllAllAllAlAA AAAAAlAAAAAAlAA lAllAAllAllAAll?
+```
+You can see how the Baconian Cipher works [here](https://www.geeksforgeeks.org/baconian-cipher/). Any two letters or symbols can be used to encode a message (all symbols and digits are ignored), the default being 'A' and 'B'. You can specify specific letters in the code, otherwise the program will use 'A' and 'B'. 
+
+## Baconian Cipher Decode
+Baconian Cipher Decode example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc bcd
+text> AAlllAlAAA, AAlllAllAllAlAA AAAAAlAAAAAAlAA lAllAAllAllAAll?
+
+If you do not know which letter is 'A' in the Baconian Cipher or which is 'B', then leave blank.
+First letter> 
+First letter is A
+Second letter> 
+Second letter is l
+
+hi, how are you?
+
+(If this message looks incorrect, try the program again, but switching the first and second letters)
+```
+You can see how the Baconian Cipher works [here](https://www.geeksforgeeks.org/baconian-cipher/). Any two letters or symbols can be used to encode a message (all symbols and digits are ignored), the default being 'A' and 'B'. Because the two letters can't be used interchangeably, there is always an 'A' character (or first character) and a 'B' character (or second character). Unless specified, the program automatically chooses the first character in the text as 'A' and the second as 'B'. If the first character in the text happens to be the 'B' character, the message will come out weird and you may have to run the program a second time, specifying the 'A' and 'B' characters. 
 
 ## Base64 Encode
 Base64 Encode example:

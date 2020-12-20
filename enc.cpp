@@ -6,7 +6,7 @@
 
 /*
     TODOS:
-    - Add baconian cipher to README
+    - 
 
     - Add XOR
     - Thoroughly test (incl memory leaks with Valgrind) starting with baconian ciphers
