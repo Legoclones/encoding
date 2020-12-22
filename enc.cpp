@@ -6,9 +6,6 @@
 
 /*
     TODOS:
-    - 
-
-    - Add XOR
     - Thoroughly test (incl memory leaks with Valgrind) starting with baconian ciphers
 */
 /*
@@ -154,6 +151,12 @@ int main(int argc, char* argv[]) {
     }
     else if (strcasecmp(argv[1], "bcd")==0) {
         cout << encObj.baconianCipherDecode() << endl;
+    }
+    else if (strcasecmp(argv[1], "xorh")==0) {
+        cout << encObj.XorHex() << endl;
+    }
+    else if (strcasecmp(argv[1], "xora")==0) {
+        cout << encObj.XorAscii() << endl;
     }
     else {
         cout << "Invalid option. Please see README.md for proper usage" << endl;

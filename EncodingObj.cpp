@@ -681,7 +681,7 @@ string EncodingObj::base64Decode() {
 */
 string EncodingObj::fromBytes(string str) {
     string returnVal = "";
-    stringstream ss(text);
+    stringstream ss(str);
 
     string token;
     while (ss >> token) {
@@ -756,6 +756,81 @@ string EncodingObj::binaryFromBytes() {
 /*
     SECTION 9 - XOR
 */
+
+/*
+    @param
+        two hexadecimal strings
+    @return
+        a XOR-encrypted string in hexadecimal
+*/
+string EncodingObj::XorHex(string hex1, string hex2) {
+    string cipherBinary = decimalToBinary(hexadecimalToDecimal(hex1), 0);
+    string textBinary = decimalToBinary(hexadecimalToDecimal(hex2), 0);
+
+    if (cipherBinary.length() > textBinary.length()) {
+        int dif = cipherBinary.length()-textBinary.length();
+        for (int i = 0; i < dif; i++) {
+            textBinary = "0" + textBinary;
+        }
+    }
+    else {
+        int dif = textBinary.length()-cipherBinary.length();
+        for (int i = 0; i < dif; i++) {
+            cipherBinary = "0" + cipherBinary;
+        }
+    }
+
+    string returnValBinary = "";
+    for (int i = 0; i < cipherBinary.length(); i++) {
+        if (cipherBinary[i]==textBinary[i]) {
+            returnValBinary += "0";
+        }
+        else {
+            returnValBinary += "1";
+        }
+    }
+
+    return decimalToHexadecimal(binaryToDecimal(returnValBinary));
+}
+
+/*
+    @param
+        none
+    @return
+        a XOR-encrypted string in hexadecimal
+*/
+string EncodingObj::XorHex() {
+    string cipher = "";
+
+    while (cipher == "") {
+        cout << "cipher> ";
+        getline(cin, cipher);
+    }
+    cout << endl;
+
+    return XorHex(text, cipher);
+}
+
+/*
+    @param
+        none
+    @return
+        a XOR-encrypted string in hexadecimal
+*/
+string EncodingObj::XorAscii() {
+    string cipher = "";
+
+    while (cipher == "") {
+        cout << "cipher> ";
+        getline(cin, cipher);
+    }
+    cout << endl;
+
+    string textHex = fromBytes(asciiToHexadecimal(text));
+    string cipherHex = fromBytes(asciiToHexadecimal(cipher));
+
+    return XorHex(textHex, cipherHex);
+}
 
 
 /*

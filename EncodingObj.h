@@ -43,6 +43,7 @@ class EncodingObj {
         string fromBytes(string str);
 
         //Section 9 - XOR
+        string XorHex(string hex1, string hex2);
 
         //Section 10 - Baconian Cipher
         
@@ -89,6 +90,8 @@ class EncodingObj {
         string binaryFromBytes();
 
         //Section 9 - XOR
+        string XorHex();
+        string XorAscii();
 
         //Section 10 - Baconian Cipher
         string baconianCipherEncode();

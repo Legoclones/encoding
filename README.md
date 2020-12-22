@@ -49,6 +49,8 @@ To remove the binary file, enter this command into the terminal:
 * [Hexadecimal to Bytes](#hexadecimal-to-bytes) - `hb`
 * [Hexadecimal to Decimal](#hexadecimal-to-decimal) - `h2d`
 * [Text Flip](#text-flip) -  `tf`
+* [XOR (ASCII)](#xor-ascii) -  `xora`
+* [XOR (Hexadecimal)](#xor-hexadecimal) -  `xorh`
 
 ## ASCII to Binary
 ASCII to Binary example:
@@ -391,3 +393,29 @@ text> hey!
 !yeh
 ```
 The string is printed out backwards.
+
+## XOR (ASCII)
+XOR (ASCII) example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc xora
+text> hi
+
+cipher> am
+
+904
+```
+The XOR operation ([see this page](https://www.khanacademy.org/computing/computer-science/cryptography/ciphers/a/xor-bitwise-operation)) is performed on two pieces of inputted ASCII text. The text returned is in **hexadecimal**. 
+
+## XOR (Hexadecimal)
+XOR (Hexadecimal) example:
+```
+user@comp_name:~/encoding$ make
+user@comp_name:~/encoding$ ./enc xorh
+text> a23f
+
+cipher> 64f
+
+a470
+```
+The XOR operation ([see this page](https://www.khanacademy.org/computing/computer-science/cryptography/ciphers/a/xor-bitwise-operation)) is performed on two pieces of inputted hexadecimal text. The text returned is in hexadecimal. 
